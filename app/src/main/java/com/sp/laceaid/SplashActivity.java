@@ -32,6 +32,18 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
+        /*
+        new Handler().postDelayed(() -> {
+            startActivity(new Intent(SplashActivity.this, Log_in_Activity.class));
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            finish();
+        }, DURATION);
+        */
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         videoView = findViewById(R.id.videoView);
         Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.new_splash);
         videoView.setVideoURI(video);
@@ -46,14 +58,5 @@ public class SplashActivity extends AppCompatActivity {
 
         videoView.setZOrderOnTop(true); // hide initial black screen
         videoView.start();    // start the video
-
-        /*
-        new Handler().postDelayed(() -> {
-            startActivity(new Intent(SplashActivity.this, Log_in_Activity.class));
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            finish();
-        }, DURATION);
-        */
     }
-
 }
