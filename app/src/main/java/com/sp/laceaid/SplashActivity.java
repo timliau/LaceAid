@@ -28,7 +28,7 @@ public class SplashActivity extends AppCompatActivity {
 
         //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);   // hide status bar
-        //getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.secondary));  // change status bar colour
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.secondary));  // change status bar colour
 
         setContentView(R.layout.activity_splash);
 
@@ -51,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
         // this function will run when the video ends
         videoView.setOnCompletionListener(mp -> {
             videoView.setVisibility(View.GONE);    // make the videoView invisible to hide the hideous white screen at the end
-            startActivity(new Intent(SplashActivity.this, Log_in_Activity.class));
+            startActivity(new Intent(SplashActivity.this, LoginOptionsActivity.class));
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();
         });
