@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "380476246304",
+    "project_id": "lace-aid",
+    "storage_bucket": "lace-aid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380476246304:android:f68642d9ac1e4fc86e6f45",
+        "android_client_info": {
+          "package_name": "com.sp.laceaid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380476246304-2h9ps0nuqotbljbdg9cc5u8ee2tb9hn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgD4W_r8qJqPhFs5zsCOjX0voKzS3FFDI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380476246304-2h9ps0nuqotbljbdg9cc5u8ee2tb9hn3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

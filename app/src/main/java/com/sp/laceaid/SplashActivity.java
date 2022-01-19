@@ -16,21 +16,22 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import java.util.Objects;
 
 public class SplashActivity extends AppCompatActivity {
     //private final int DURATION = (int)(1000 * 2);
     private VideoView videoView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_splash);
         //getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);   // hide status bar
         getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.secondary));  // change status bar colour
-
-        setContentView(R.layout.activity_splash);
 
         /*
         new Handler().postDelayed(() -> {
