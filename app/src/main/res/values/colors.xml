@@ -8,7 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#FF6bd755</color>
+    <color name="primary_op">#996BD755</color>
     <color name="secondary">#FFe1f7dd</color>
+    <color name="cultured">#FFeeeeee</color>
     <color name="dark_grey">#FF707070</color>
     <color name="light_grey">#FFA1A1A1</color>
+    <color name="progress_bg">#7A515151</color>
+    <color name="tartOrange">#FFFF4949</color>
 </resources>
