@@ -123,6 +123,8 @@ public class LoginActivity extends AppCompatActivity{
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
 
+                    // save preference (should be instantiated after user's email is verified but too lazy to change the code now)
+                    // TODO: move this line into if(user.isEmailVerified()) + remove splash screen if checking
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                     // to finish() LoginOptionsActivity -> so onBackPressed doesn't go back to login activity
