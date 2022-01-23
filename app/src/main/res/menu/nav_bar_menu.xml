@@ -4,13 +4,16 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/nav_home"
+        android:enabled="true"
         android:title="Home" />
     <item
         android:id="@+id/manualFragment"
         android:icon="@drawable/nav_book"
+        android:enabled="true"
         android:title="Manual" />
     <item
         android:id="@+id/runRecorderFragment"
         android:icon="@drawable/nav_running"
+        android:enabled="true"
         android:title="Run Recorder" />
 </menu>
