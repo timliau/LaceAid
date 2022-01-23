@@ -10,24 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaceAid">
         <activity
-            android:name=".VerifyActivity"
+            android:name=".login.screen.VerifyActivity"
             android:exported="false" />
         <activity
-            android:name=".ForgorActivity"
+            android:name=".login.screen.ForgorActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".login.screen.SignupActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".login.screen.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginOptionsActivity"
+            android:name=".login.screen.LoginOptionsActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity

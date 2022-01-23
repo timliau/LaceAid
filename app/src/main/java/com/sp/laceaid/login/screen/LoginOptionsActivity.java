@@ -1,22 +1,22 @@
-package com.sp.laceaid;
+package com.sp.laceaid.login.screen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowInsetsController;
 import android.widget.Button;
+
+import com.sp.laceaid.R;
 
 public class LoginOptionsActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_options);
+        setContentView(R.layout.login_activity_login_options);
 
         Button loginOption = findViewById(R.id.button_login_option);
         Button signupOption = findViewById(R.id.button_signup_option);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".login.screen.LoginActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar1"
@@ -39,7 +39,7 @@
             android:layout_marginEnd="30dp"
             android:fontFamily="@font/segoe_ui_semibold"
             android:text="Sign up"
-            android:textColor="@color/black"
+            android:textColor="@color/textGrey"
             android:textSize="35sp" />
 
         <TextView
@@ -135,7 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="30dp"
-            android:background="@drawable/redbanner"
+            android:background="@drawable/login_warning"
             android:orientation="horizontal"
             android:padding="10dp"
             android:visibility="gone">

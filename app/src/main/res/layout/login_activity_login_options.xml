@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginOptionsActivity">
+    tools:context=".login.screen.LoginOptionsActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="190dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/illustration2" />
+            app:srcCompat="@drawable/login_illustration" />
 
         <TextView
             android:layout_width="wrap_content"

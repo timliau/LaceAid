@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    tools:context=".LoginActivity">
+    tools:context=".login.screen.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                 android:layout_height="210dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="20dp"
-                app:srcCompat="@drawable/email" />
+                app:srcCompat="@drawable/login_email" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -234,7 +234,7 @@
                 android:layout_height="250dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="20dp"
-                app:srcCompat="@drawable/email_sent" />
+                app:srcCompat="@drawable/login_email_sent" />
 
             <android.widget.Button
                 android:id="@+id/login_button_forgor"

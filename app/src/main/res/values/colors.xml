@@ -15,4 +15,5 @@
     <color name="light_grey">#FFA1A1A1</color>
     <color name="progress_bg">#7A515151</color>
     <color name="tartOrange">#FFFF4949</color>
+    <color name="textGrey">#FF505050</color>
 </resources>
