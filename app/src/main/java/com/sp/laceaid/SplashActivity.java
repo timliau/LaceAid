@@ -10,12 +10,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.VideoView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.sp.laceaid.login.screen.LoginOptionsActivity;
 
 public class SplashActivity extends AppCompatActivity {
     //private final int DURATION = (int)(1000 * 2);
     private VideoView videoView;
-
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,8 @@ public class SplashActivity extends AppCompatActivity {
             finish();
         }, DURATION);
         */
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
@@ -44,9 +48,15 @@ public class SplashActivity extends AppCompatActivity {
         // this function will run when the video ends
         videoView.setOnCompletionListener(mp -> {
             videoView.setVisibility(View.GONE);    // make the videoView invisible to hide the hideous white screen at the end
-            startActivity(new Intent(SplashActivity.this, LoginOptionsActivity.class));
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-            finish();
+            if(firebaseUser == null) {
+                startActivity(new Intent(SplashActivity.this, LoginOptionsActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
+            } else {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                finish();
+            }
         });
 
         videoView.setZOrderOnTop(true); // hide initial black screen

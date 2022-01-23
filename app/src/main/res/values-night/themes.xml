@@ -23,4 +23,10 @@
         <item name="colorControlHighlight">@color/primary</item>
         <item name="android:textColorHighlight">@color/primary_op</item>
     </style>
+
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <!--item name="colorControlNormal">@color/toolbar_color_control_normal</item-->
+        <!--item name="android:homeAsUpIndicator">@drawable/back_button_image</item-->
+    </style>
 </resources>
