@@ -33,7 +33,7 @@ public class ForgorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_forgor);
+        setContentView(R.layout.login_activity_forgor);
 
         // hooks
         arrow = findViewById(R.id.arrow1);

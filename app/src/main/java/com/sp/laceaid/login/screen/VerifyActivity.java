@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.sp.laceaid.HomeActivity;
+import com.sp.laceaid.MainActivity;
 import com.sp.laceaid.R;
 
 public class VerifyActivity extends AppCompatActivity {
@@ -24,7 +24,7 @@ public class VerifyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_verify);
+        setContentView(R.layout.login_activity_verify);
 
         // hooks
         chooseEmail = findViewById(R.id.tv_chooseEmail);
@@ -70,7 +70,7 @@ public class VerifyActivity extends AppCompatActivity {
 
                 // check if the email is verified
                 if(user.isEmailVerified()){
-                    startActivity(new Intent(VerifyActivity.this, HomeActivity.class));
+                    startActivity(new Intent(VerifyActivity.this, MainActivity.class));
                     finish();
                 }
 

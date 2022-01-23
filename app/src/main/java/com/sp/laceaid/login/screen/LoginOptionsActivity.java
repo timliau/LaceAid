@@ -16,7 +16,7 @@ public class LoginOptionsActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_options);
+        setContentView(R.layout.login_activity_login_options);
 
         Button loginOption = findViewById(R.id.button_login_option);
         Button signupOption = findViewById(R.id.button_signup_option);

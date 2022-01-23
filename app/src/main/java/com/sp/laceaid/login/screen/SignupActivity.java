@@ -40,7 +40,7 @@ public class SignupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.login_activity_signup);
 
         // hooks
         arrow = findViewById(R.id.arrow1);

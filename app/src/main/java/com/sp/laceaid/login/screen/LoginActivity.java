@@ -22,7 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.sp.laceaid.HomeActivity;
+import com.sp.laceaid.MainActivity;
 import com.sp.laceaid.R;
 
 public class LoginActivity extends AppCompatActivity{
@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_activity_login);
 
         // hooks
         arrow = findViewById(R.id.arrow1);
@@ -130,7 +130,7 @@ public class LoginActivity extends AppCompatActivity{
 
                     // check if the email is verified
                     if(user.isEmailVerified()){
-                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     } else {
                         user.sendEmailVerification();
                         Intent intent = new Intent(LoginActivity.this, VerifyActivity.class);

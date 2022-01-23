@@ -16,7 +16,7 @@
             android:name=".login.screen.ForgorActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".login.screen.SignupActivity"

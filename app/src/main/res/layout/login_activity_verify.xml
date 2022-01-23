@@ -42,7 +42,7 @@
             android:fontFamily="@font/segoe_ui_semibold"
             android:text="Verify your identity by confirming your email"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/textGrey"
             android:textSize="21sp" />
 
         <ImageView
@@ -51,7 +51,7 @@
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="30dp"
-            app:srcCompat="@drawable/paper_plane" />
+            app:srcCompat="@drawable/login_paper_plane" />
 
         <TextView
             android:id="@+id/textView5"
@@ -62,7 +62,7 @@
             android:fontFamily="@font/segoe_ui_semibold"
             android:text="Check your email"
             android:textAlignment="center"
-            android:textColor="@color/black"
+            android:textColor="@color/textGrey"
             android:textSize="21sp" />
 
         <TextView

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_bar"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.sp.laceaid.homeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/manualFragment"
+        android:name="com.sp.laceaid.manualFragment"
+        android:label="fragment_manual"
+        tools:layout="@layout/fragment_manual" />
+    <fragment
+        android:id="@+id/runRecorderFragment"
+        android:name="com.sp.laceaid.runRecorderFragment"
+        android:label="fragment_run_recorder"
+        tools:layout="@layout/fragment_run_recorder" />
+</navigation>
