@@ -1,4 +1,4 @@
-package com.sp.laceaid;
+package com.sp.laceaid.login.screen;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +22,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.sp.laceaid.HomeActivity;
+import com.sp.laceaid.R;
 
 public class LoginActivity extends AppCompatActivity{
     private Button login;

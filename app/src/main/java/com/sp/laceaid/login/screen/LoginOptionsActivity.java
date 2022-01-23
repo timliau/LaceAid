@@ -1,15 +1,15 @@
-package com.sp.laceaid;
+package com.sp.laceaid.login.screen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowInsetsController;
 import android.widget.Button;
+
+import com.sp.laceaid.R;
 
 public class LoginOptionsActivity extends AppCompatActivity implements View.OnClickListener {
 

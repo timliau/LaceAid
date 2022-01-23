@@ -4,21 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.VideoView;
 
-import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
+import com.sp.laceaid.login.screen.LoginOptionsActivity;
 
 public class SplashActivity extends AppCompatActivity {
     //private final int DURATION = (int)(1000 * 2);
