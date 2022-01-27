@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity{
                     if(loginOptionExist) ((ResultReceiver)getIntent().getParcelableExtra("finisher")).send(1, new Bundle());
 
                     // check if the email is verified
-                    if(user.isEmailVerified()){
+                    if(user.isEmailVerified()) {
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     } else {
                         user.sendEmailVerification();
