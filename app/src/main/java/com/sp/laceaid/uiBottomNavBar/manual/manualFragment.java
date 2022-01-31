@@ -1,4 +1,4 @@
-package com.sp.laceaid.ui.manual;
+package com.sp.laceaid.uiBottomNavBar.manual;
 
 import android.os.Bundle;
 

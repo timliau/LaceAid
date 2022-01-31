@@ -18,7 +18,7 @@
         app:itemIconSize="24dp"
         app:itemIconTint="@color/dark_grey"
         app:itemTextColor="@color/dark_grey"
-        app:menu="@menu/nav_drawer" />
+        app:menu="@menu/nav_drawer_menu" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
