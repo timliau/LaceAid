@@ -21,6 +21,7 @@
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/navdrawer_info.xml" value="0.17552083333333332" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/redbanner.xml" value="0.26614583333333336" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/font/segeoui.xml" value="0.28020833333333334" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_about.xml" value="0.22871376811594202" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_forgor.xml" value="0.176" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_home.xml" value="0.21829710144927536" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_login.xml" value="0.264" />
@@ -33,8 +34,12 @@
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/fragment_manual.xml" value="0.12708333333333333" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/fragment_run_recorder.xml" value="0.12708333333333333" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/nav_header_main.xml" value="0.16197916666666667" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/navdrawer_activity_info.xml" value="0.2246376811594203" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/navdrawer_activity_profile.xml" value="0.2246376811594203" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/navdrawer_activity_setting.xml" value="0.2246376811594203" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/menu/nav_bar_menu.xml" value="0.16197916666666667" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/menu/nav_drawer.xml" value="0.16197916666666667" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/menu/nav_drawer_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

@@ -10,6 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LaceAid">
         <activity
+            android:name=".uiNavDrawer.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uiNavDrawer.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uiNavDrawer.InfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".uiNavDrawer.AboutActivity"
+            android:exported="false" />
+        <activity
             android:name=".login.screen.VerifyActivity"
             android:exported="false" />
         <activity
