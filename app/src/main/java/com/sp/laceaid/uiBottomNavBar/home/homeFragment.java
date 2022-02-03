@@ -1,4 +1,4 @@
-package com.sp.laceaid.ui.home;
+package com.sp.laceaid.uiBottomNavBar.home;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -75,14 +75,5 @@ public class homeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // getView(), view, or getActivity()
-        Button button = view.findViewById(R.id.temp_sign_out);
-
-        button.setOnClickListener(v->{
-            FirebaseAuth.getInstance().signOut();
-            Intent intent = new Intent(getActivity(), LoginOptionsActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        });
     }
 }

@@ -13,10 +13,12 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/white</item>
         <item name="android:windowLightStatusBar">true</item>
+
         <!-- Customize your theme here. -->
         <!-- Hide title and action bar -->
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+        <item name="drawerArrowStyle">@style/ToolbarTheme</item>
     </style>
 
     <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -26,9 +28,11 @@
         <item name="android:textColorHighlight">@color/primary_op</item>
     </style>
 
-    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+    <style name="ToolbarTheme" parent="@style/Widget.AppCompat.DrawerArrowToggle">
         <!-- Customize color of navigation drawer icon and back arrow -->
         <!--item name="colorControlNormal">@color/toolbar_color_control_normal</item-->
         <!--item name="android:homeAsUpIndicator">@drawable/back_button_image</item-->
+        <item name="spinBars">true</item>
+        <item name="color">@color/dark_grey</item>
     </style>
 </resources>

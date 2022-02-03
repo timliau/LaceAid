@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.sp.laceaid.ui.home.homeFragment"
+        android:name="com.sp.laceaid.uiBottomNavBar.home.homeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/manualFragment"
-        android:name="com.sp.laceaid.ui.manual.manualFragment"
+        android:name="com.sp.laceaid.uiBottomNavBar.manual.manualFragment"
         android:label="fragment_manual"
         tools:layout="@layout/fragment_manual" />
     <fragment
         android:id="@+id/runRecorderFragment"
-        android:name="com.sp.laceaid.ui.run.runRecorderFragment"
+        android:name="com.sp.laceaid.uiBottomNavBar.run.runRecorderFragment"
         android:label="fragment_run_recorder"
         tools:layout="@layout/fragment_run_recorder" />
 </navigation>

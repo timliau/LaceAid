@@ -1,4 +1,4 @@
-package com.sp.laceaid.ui.run;
+package com.sp.laceaid.uiBottomNavBar.run;
 
 import android.os.Bundle;
 
