@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.location.Location;
@@ -30,18 +31,31 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RecordRunActivity extends FragmentActivity implements OnMapReadyCallback{
 //public class RecordRunActivity extends AppCompatActivity {
 
     public static final int DEFAULT_UPDATE_INTERVAL = 10;
-    public static final int FAST_UPDATE_INTERVAL = 5;
+    public static final int FAST_UPDATE_INTERVAL = 2;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
     private GoogleMap map;
+
+    Polyline route = null;
+    ArrayList<LatLng> routePoints = new ArrayList<>();
+
+    LatLng mapPoint;
     private LatLng userLocation;
+    Marker currentLocationMarker;
     TextView tv_steps, tv_time, tv_distance, tv_pace;
     Button startButton, endButton;
     Boolean isTracking = false;
@@ -143,6 +157,7 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
                     Toast.makeText(this, "Location is null bro", Toast.LENGTH_SHORT).show();
                 }
                 updateUIValues(location);
+//                drawPolyline(location);
             });
         } else {
             // Permission not granted yet
@@ -153,6 +168,7 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
         }
     }
 
+    @SuppressLint("MissingPermission")
     private void updateUIValues(Location location) {
 
         try {
@@ -165,17 +181,46 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
             tv_steps.setText(String.valueOf(location.getLatitude()));
 
             userLocation = new LatLng(location.getLatitude(), location.getLongitude());
-            map.addMarker(new MarkerOptions().position(userLocation).title("My Location"));
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+//            map.addMarker(new MarkerOptions().position(userLocation).title("My Location"));
+//            map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+
+            if (currentLocationMarker != null) {
+                currentLocationMarker.remove();
+            }
+
+            // User Location Marker
+//            MarkerOptions markerOptions = new MarkerOptions();
+//            markerOptions.position(userLocation);
+//            markerOptions.title("Current Position");
+//            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+//            currentLocationMarker = map.addMarker(markerOptions);
+            map.setMyLocationEnabled(true);
+
+            // Move camera during run
+            map.moveCamera(CameraUpdateFactory.newLatLng(userLocation));
+            map.animateCamera(CameraUpdateFactory.zoomTo(15));
+
+            drawPolyline(location);
+
 
         } catch (NullPointerException e){
             Toast.makeText(this, "Location is null", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void drawPolyline (Location location) {
+        if (route != null)
+            route.remove();
+        LatLng prevLocation = new LatLng(location.getLatitude(), location.getLongitude());
+        routePoints.add(prevLocation);
+        PolylineOptions polylineOptions = new PolylineOptions().addAll(routePoints);
+        route = map.addPolyline(polylineOptions);
+    }
+
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         map = googleMap;
+
 
 //        userLocation = new LatLng(50,50);
 //        map.addMarker(new MarkerOptions().position(userLocation).title("My Location"));
