@@ -63,7 +63,7 @@
             android:ems="10"
             android:fontFamily="@font/segoe_ui"
             android:hint="Enter your Name"
-            android:inputType="textPersonName|textEmailAddress"
+            android:inputType="textPersonName|textCapSentences|textEmailAddress"
             android:minHeight="48dp"
             android:theme="@style/EditTextTheme" />
 

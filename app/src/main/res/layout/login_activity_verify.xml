@@ -73,7 +73,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="30dp"
             android:fontFamily="@font/segoe_ui"
-            android:text="To confirm your email address, tap the button in the email we sent"
+            android:text="To confirm your email address, tap the link in the email we sent"
             android:textColor="@color/dark_grey"
             android:textSize="14sp" />
 

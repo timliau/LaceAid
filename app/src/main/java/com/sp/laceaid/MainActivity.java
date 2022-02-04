@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 TextView nvName = headerView.findViewById(R.id.tvnh_name);
                 TextView nvEmail = headerView.findViewById(R.id.tvnh_email);
 
+                //databaseReference.child(userID).child(email)...?
                 databaseReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
