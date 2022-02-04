@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Passing each menu ID as a set of Ids because each menu should be considered as top level destinations (no (back?) up-arrow) (?)
         // only needed if app has toolbar / actionbar
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.homeFragment, R.id.manualFragment, R.id.runRecorderFragment)
+                R.id.homeFragment, R.id.arFragment, R.id.runRecorderFragment)
                 .build();
 
         // mainActivity fragment layout

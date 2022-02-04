@@ -11,10 +11,10 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
     <fragment
-        android:id="@+id/manualFragment"
-        android:name="com.sp.laceaid.uiBottomNavBar.manual.manualFragment"
+        android:id="@+id/arFragment"
+        android:name="com.sp.laceaid.uiBottomNavBar.ar.arFragment"
         android:label="fragment_manual"
-        tools:layout="@layout/fragment_manual" />
+        tools:layout="@layout/fragment_ar" />
     <fragment
         android:id="@+id/runRecorderFragment"
         android:name="com.sp.laceaid.uiBottomNavBar.run.runRecorderFragment"

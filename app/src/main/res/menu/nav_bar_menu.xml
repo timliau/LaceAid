@@ -7,10 +7,10 @@
         android:enabled="true"
         android:title="Home" />
     <item
-        android:id="@+id/manualFragment"
-        android:icon="@drawable/nav_book"
+        android:id="@+id/arFragment"
         android:enabled="true"
-        android:title="Manual" />
+        android:icon="@drawable/nav_ruler"
+        android:title="AR ruler" />
     <item
         android:id="@+id/runRecorderFragment"
         android:icon="@drawable/nav_running"
