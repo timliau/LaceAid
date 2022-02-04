@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // >> BOTTOM NAVIGATION BAR
+        // <<< BOTTOM NAVIGATION BAR >>>
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
         // Passing each menu ID as a set of Ids because each menu should be considered as top level destinations (no (back?) up-arrow) (?)
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        // >> NAVIGATION DRAWER
+        // <<< NAVIGATION DRAWER >>>
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
@@ -85,20 +85,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         // navigation drawer menu
         navigationView.bringToFront();
+        View headerView = navigationView.getHeaderView(0);
+        TextView nvName = headerView.findViewById(R.id.tvnh_name);
+        TextView nvEmail = headerView.findViewById(R.id.tvnh_email);
+
+        // update name and email in nav drawer when user load (first time)
+        databaseReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userprofile = snapshot.getValue(User.class);
+
+                if(userprofile != null) {
+                    String name = userprofile.getFirstName();
+                    String email = userprofile.getEmail();
+                    nvName.setText(name);
+                    nvEmail.setText(email);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Cannot update profile", Toast.LENGTH_LONG).show();
+            }
+        });
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
-            // Called when a drawer has settled in a completely closed state.
+            /** Called when a drawer has settled in a completely closed state.*/
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
                 //Toast.makeText(MainActivity.this, "drawer closed", Toast.LENGTH_LONG).show();
             }
 
-            // Called when a drawer has settled in a completely open state.
+            /** Called when a drawer has settled in a completely open state.*/
+            // When drawer is opened again, this function will check if there is a change of
+            // email/name in db and will update them respectively
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
                 //Toast.makeText(MainActivity.this, "drawer opened", Toast.LENGTH_LONG).show();
-                View headerView = navigationView.getHeaderView(0);
-                TextView nvName = headerView.findViewById(R.id.tvnh_name);
-                TextView nvEmail = headerView.findViewById(R.id.tvnh_email);
 
                 //databaseReference.child(userID).child(email)...?
                 databaseReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -107,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         User userprofile = snapshot.getValue(User.class);
 
                         if(userprofile != null) {
-                            String name = userprofile.getName();
+                            String name = userprofile.getFirstName();
                             String email = userprofile.getEmail();
                             nvName.setText(name);
                             nvEmail.setText(email);
@@ -128,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    // if drawer open, press back will close it
     @Override
     public void onBackPressed(){
         if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -137,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    // menu options in navigation drawer
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {

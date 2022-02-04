@@ -30,7 +30,7 @@ public class SignupActivity extends AppCompatActivity {
     private Button signup;
     private ImageView arrow;
     private TextView login;
-    private EditText name, email, password;
+    private EditText firstName, lastName, email, password;
     private RelativeLayout progress_bar;
     private LinearLayout failed_warning;
     private boolean loginOptionExist;
@@ -46,7 +46,8 @@ public class SignupActivity extends AppCompatActivity {
         arrow = findViewById(R.id.arrow1);
         login = findViewById(R.id.link_login);
         signup = findViewById(R.id.login_button);
-        name = findViewById(R.id.signup_name);
+        firstName = findViewById(R.id.signup_name);
+        lastName = findViewById(R.id.signup_name2);
         email = findViewById(R.id.signup_email);
         password = findViewById(R.id.login_password);
         progress_bar = findViewById(R.id.progress_bar);
@@ -88,12 +89,18 @@ public class SignupActivity extends AppCompatActivity {
 
     private void registerUser() {
         String emailStr = email.getText().toString().trim();
-        String nameStr = name.getText().toString();
+        String firstNameStr = firstName.getText().toString();
+        String lastNameStr = lastName.getText().toString();
         String passwordStr = password.getText().toString().trim();
 
-        if(nameStr.isEmpty()) {
-            name.setError("Name is required");
-            name.requestFocus();
+        if(firstNameStr.isEmpty()) {
+            firstName.setError("First name is required");
+            firstName.requestFocus();
+            return;
+        }
+        if(lastNameStr.isEmpty()) {
+            lastName.setError("Last name is required");
+            lastName.requestFocus();
             return;
         }
         if(emailStr.isEmpty()) {
@@ -123,7 +130,7 @@ public class SignupActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
 
                        if(task.isSuccessful()) {
-                           User user = new User(nameStr, emailStr);
+                           User user = new User(firstNameStr, lastNameStr, emailStr);
 
                            FirebaseDatabase.getInstance("https://lace-aid-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users")
                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

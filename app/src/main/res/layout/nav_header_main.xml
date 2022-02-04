@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -53,9 +54,10 @@
         android:fontFamily="@font/segoe_ui_semibold"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:text="Loading..."
+        android:text=" "
         android:textColor="@color/primary"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/tvnh_email"
@@ -64,8 +66,9 @@
         android:fontFamily="@font/segoe_ui"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
-        android:text="Loading..."
-        android:textSize="16sp" />
+        android:text=" "
+        android:textSize="16sp"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <View
         android:layout_width="match_parent"

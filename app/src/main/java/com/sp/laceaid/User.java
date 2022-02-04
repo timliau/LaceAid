@@ -2,18 +2,23 @@ package com.sp.laceaid;
 
 public class User {
     // class to group data for storing in realtime database
-    private String name, email;
+    private String firstName, lastName, email;
 
     private User(){
     }
 
-    public User(String name, String email) {
-        this.name = name;
+    public User(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getEmail() {
