@@ -16,12 +16,21 @@
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ic_log_bg_3.xml" value="0.14322916666666666" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ic_running.xml" value="0.178125" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ic_warning_svgrepo_com.xml" value="0.178125" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/nav_background.xml" value="0.2345" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/nav_home.xml" value="0.2345" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/nav_ruler.xml" value="0.152" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/nav_running.xml" value="0.152" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/navbar.xml" value="0.26614583333333336" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/navdrawer_about.xml" value="0.2345" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/navdrawer_help.xml" value="0.17552083333333332" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/navdrawer_info.xml" value="0.17552083333333332" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/navdrawer_logout.xml" value="0.2345" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/navdrawer_person.xml" value="0.2345" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/navdrawer_setting.xml" value="0.2345" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/redbanner.xml" value="0.26614583333333336" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/toolbar_burger.xml" value="0.2345" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/unused_bg.xml" value="0.2345" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/unused_book.xml" value="0.2345" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/font/segeoui.xml" value="0.28020833333333334" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_about.xml" value="0.22871376811594202" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_forgor.xml" value="0.176" />

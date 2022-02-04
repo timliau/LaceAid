@@ -10,13 +10,13 @@
             android:title="Setting"
             android:icon="@drawable/navdrawer_setting" />
         <item
-            android:id="@+id/nav_help"
-            android:title="Help"
-            android:icon="@drawable/navdrawer_help" />
+            android:id="@+id/nav_manual"
+            android:icon="@drawable/navdrawer_manual"
+            android:title="Manual" />
         <item
             android:id="@+id/nav_about"
             android:title="About"
-            android:icon="@drawable/navdrawer_info" />
+            android:icon="@drawable/navdrawer_about" />
         <item
             android:id="@+id/logout"
             android:title="Log out"
