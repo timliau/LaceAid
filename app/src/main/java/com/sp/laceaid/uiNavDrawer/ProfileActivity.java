@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -101,8 +102,6 @@ public class ProfileActivity extends AppCompatActivity {
 
             updateUser();
 
-            saveTV.setVisibility(View.VISIBLE);
-            progressBar.setVisibility(View.GONE);
         });
     }
 
@@ -112,6 +111,12 @@ public class ProfileActivity extends AppCompatActivity {
         String currentPwStr = currentPw.getText().toString();
         String newPwStr = newPw.getText().toString();
         String confirmPwStr = confirmPw.getText().toString();
+        boolean needDelay = true;
+        ly_firstName.setError(null);
+        ly_lastName.setError(null);
+        ly_currentPw.setError(null);
+        ly_newPw.setError(null);
+        ly_confirmPw.setError(null);
 
         if(firstNameStr.isEmpty()) {
             ly_firstName.setError("*Required");
@@ -151,12 +156,26 @@ public class ProfileActivity extends AppCompatActivity {
                 return;
             }
             updatePassword(currentPwStr, newPwStr);
+            needDelay = false;
         }
 
+        // update value in rtdb (for names only)
         databaseReference.child(userID).child("firstName").setValue(firstNameStr);
         databaseReference.child(userID).child("lastName").setValue(lastNameStr);
-        Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
-        // TODO: 5/2/2022  convert to fragment + use snack instead of toast
+
+        // if not updating pw, put in some delay so the loading animation appear as it's too fast
+        if(needDelay) {
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    saveTV.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                }
+            }, 500);
+        }
+
 
     }
 
@@ -169,10 +188,23 @@ public class ProfileActivity extends AppCompatActivity {
                     public void onSuccess(Void unused) {
                         // successfully authenticated, begin update
                         user.updatePassword(newPwStr)
+                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                                        currentPw.setText("");
+                                        newPw.setText("");
+                                        confirmPw.setText("");
+                                        saveTV.setVisibility(View.VISIBLE);
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+                                })
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         Toast.makeText(ProfileActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        saveTV.setVisibility(View.VISIBLE);
+                                        progressBar.setVisibility(View.GONE);
                                     }
                                 });
                     }
@@ -181,6 +213,8 @@ public class ProfileActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Toast.makeText(ProfileActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        saveTV.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.GONE);
                     }
                 });
     }
