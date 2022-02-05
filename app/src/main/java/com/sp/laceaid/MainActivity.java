@@ -3,6 +3,7 @@ package com.sp.laceaid;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TextView nvName = headerView.findViewById(R.id.tvnh_name);
         TextView nvEmail = headerView.findViewById(R.id.tvnh_email);
 
-        // update name and email in nav drawer when user load (first time)
+        // update name and email in nav drawer when user load (first time + only once)
         databaseReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -109,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        // set toggle fn when burger icon is clicked
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
             /** Called when a drawer has settled in a completely closed state.*/
             public void onDrawerClosed(View view) {
@@ -164,6 +166,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     // menu options in navigation drawer
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // TODO: 5/2/2022 convert to fragments
         switch (item.getItemId()) {
             case R.id.nav_profile:
                 startActivity(new Intent(this, ProfileActivity.class));
@@ -199,5 +202,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

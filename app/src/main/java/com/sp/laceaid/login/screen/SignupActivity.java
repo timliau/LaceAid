@@ -89,8 +89,8 @@ public class SignupActivity extends AppCompatActivity {
 
     private void registerUser() {
         String emailStr = email.getText().toString().trim();
-        String firstNameStr = firstName.getText().toString();
-        String lastNameStr = lastName.getText().toString();
+        String firstNameStr = firstName.getText().toString().trim();
+        String lastNameStr = lastName.getText().toString().trim();
         String passwordStr = password.getText().toString().trim();
 
         if(firstNameStr.isEmpty()) {
