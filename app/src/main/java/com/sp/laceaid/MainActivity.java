@@ -15,6 +15,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,10 +31,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sp.laceaid.login.screen.LoginOptionsActivity;
-import com.sp.laceaid.uiNavDrawer.AboutActivity;
-import com.sp.laceaid.uiNavDrawer.InfoActivity;
-import com.sp.laceaid.uiNavDrawer.ProfileActivity;
-import com.sp.laceaid.uiNavDrawer.SettingActivity;
+import com.sp.laceaid.uiNavDrawer.AboutFragment;
+import com.sp.laceaid.uiNavDrawer.ManualFragment;
+import com.sp.laceaid.uiNavDrawer.ProfileFragment;
+import com.sp.laceaid.uiNavDrawer.SettingFragment;
 
 import java.util.Objects;
 
@@ -41,16 +42,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
-    private Toolbar toolbar;
+    private Toolbar toolbar, toolbar2;
+    private ImageView arrow;
 
     private FirebaseUser user;
     private DatabaseReference databaseReference;
     private String userID;
 
+    private ConstraintLayout constraintLayout, constraintLayout2;
+    private boolean isDrawerFragOpen = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // hooks
+        constraintLayout = findViewById(R.id.constraintMain);
+        constraintLayout2 = findViewById(R.id.constraintMain2);
+        arrow = findViewById(R.id.arrow1);
+
+        arrow.setOnClickListener(v->{
+            isDrawerFragOpen = false;
+            constraintLayout2.setVisibility(View.GONE);
+            constraintLayout.setVisibility(View.VISIBLE);
+        });
+
 
         // <<< BOTTOM NAVIGATION BAR >>>
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -74,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        toolbar2 = findViewById(R.id.toolbar2);
 
         // grab data from firebase realtime db
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -82,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         userID = user.getUid();
 
         setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar2);
         Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false); // hide title
 
         // navigation drawer menu
@@ -153,38 +172,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    // if drawer open, press back will close it
-    @Override
-    public void onBackPressed(){
-        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        }else{
-            super.onBackPressed();
-        }
-    }
-
     // menu options in navigation drawer
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // TODO: 5/2/2022 convert to fragments
+        constraintLayout.setVisibility(View.GONE);
+        constraintLayout2.setVisibility(View.VISIBLE);
+        isDrawerFragOpen = true;
+
         switch (item.getItemId()) {
             case R.id.nav_profile:
-                startActivity(new Intent(this, ProfileActivity.class));
+                // use .replace because there's already one fragment view on home (otherwise use .add)
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView2, new ProfileFragment()).commit();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
 
             case R.id.nav_setting:
-                startActivity(new Intent(this, SettingActivity.class));
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView2, new SettingFragment()).commit();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
 
             case R.id.nav_manual:
-                startActivity(new Intent(this, InfoActivity.class));
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView2, new ManualFragment()).commit();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
 
             case R.id.nav_about:
-                startActivity(new Intent(this, AboutActivity.class));
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView2, new AboutFragment()).commit();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
 
@@ -202,6 +215,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onBackPressed(){
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            getSupportFragmentManager().popBackStack();
+        }else if (isDrawerFragOpen) {
+            isDrawerFragOpen = false;
+            constraintLayout2.setVisibility(View.GONE);
+            constraintLayout.setVisibility(View.VISIBLE);
+        } else {
+            super.onBackPressed();
+        }
     }
 
     @Override

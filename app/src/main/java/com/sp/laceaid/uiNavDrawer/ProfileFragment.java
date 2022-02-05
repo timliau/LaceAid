@@ -1,15 +1,16 @@
 package com.sp.laceaid.uiNavDrawer;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,14 +28,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.sp.laceaid.MainActivity;
 import com.sp.laceaid.R;
 import com.sp.laceaid.User;
-import com.sp.laceaid.login.screen.LoginOptionsActivity;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileFragment extends Fragment {
 
-    private ImageView arrow;
     private TextInputEditText firstName, lastName, newPw, currentPw, confirmPw;
     private TextInputLayout ly_firstName, ly_lastName, ly_newPw, ly_currentPw, ly_confirmPw;
     private TextView saveTV;
@@ -46,27 +44,31 @@ public class ProfileActivity extends AppCompatActivity {
     private String userID;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.navdrawer_activity_profile);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.nav_drawer_fragment_profile, container, false);
+    }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         // hooks
-        arrow = findViewById(R.id.arrow1);
-        save = findViewById(R.id.btn_save);
-        progressBar = findViewById(R.id.profileProgressBar);
-        saveTV = findViewById(R.id.tv_save);
+        save = getView().findViewById(R.id.btn_save);
+        progressBar = getView().findViewById(R.id.profileProgressBar);
+        saveTV = getView().findViewById(R.id.tv_save);
 
-        ly_firstName = findViewById(R.id.txtly_first);
-        ly_lastName = findViewById(R.id.txtly_last);
-        ly_newPw = findViewById(R.id.txtly_new);
-        ly_currentPw = findViewById(R.id.txtly_current);
-        ly_confirmPw = findViewById(R.id.txtly_confirm);
+        ly_firstName = getView().findViewById(R.id.txtly_first);
+        ly_lastName = getView().findViewById(R.id.txtly_last);
+        ly_newPw = getView().findViewById(R.id.txtly_new);
+        ly_currentPw = getView().findViewById(R.id.txtly_current);
+        ly_confirmPw = getView().findViewById(R.id.txtly_confirm);
 
-        firstName = findViewById(R.id.txt_first);
-        lastName = findViewById(R.id.txt_last);
-        currentPw = findViewById(R.id.txt_current);
-        newPw = findViewById(R.id.txt_new);
-        confirmPw = findViewById(R.id.txt_confirm);
+        firstName = getView().findViewById(R.id.txt_first);
+        lastName = getView().findViewById(R.id.txt_last);
+        currentPw = getView().findViewById(R.id.txt_current);
+        newPw = getView().findViewById(R.id.txt_new);
+        confirmPw = getView().findViewById(R.id.txt_confirm);
 
 
         // grab data from firebase realtime db
@@ -90,11 +92,9 @@ public class ProfileActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ProfileActivity.this, "Cannot update profile", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Cannot update profile", Toast.LENGTH_LONG).show();
             }
         });
-
-        arrow.setOnClickListener(v -> finish());
 
         save.setOnClickListener(v->{
             saveTV.setVisibility(View.GONE);
@@ -171,7 +171,7 @@ public class ProfileActivity extends AppCompatActivity {
                 public void run() {
                     saveTV.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Profile Updated", Toast.LENGTH_SHORT).show();
                 }
             }, 500);
         }
@@ -191,7 +191,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void unused) {
-                                        Toast.makeText(ProfileActivity.this, "Profile Updated", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), "Profile Updated", Toast.LENGTH_SHORT).show();
                                         currentPw.setText("");
                                         newPw.setText("");
                                         confirmPw.setText("");
@@ -202,7 +202,7 @@ public class ProfileActivity extends AppCompatActivity {
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(ProfileActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                                         saveTV.setVisibility(View.VISIBLE);
                                         progressBar.setVisibility(View.GONE);
                                     }
@@ -212,15 +212,10 @@ public class ProfileActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ProfileActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         saveTV.setVisibility(View.VISIBLE);
                         progressBar.setVisibility(View.GONE);
                     }
                 });
-    }
-
-    @Override
-    public void onBackPressed(){
-        finish();
     }
 }
