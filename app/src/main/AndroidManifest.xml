@@ -47,6 +47,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.sp.laceaid.uiBottomNavBar.ar.MeasureActivity"
+            android:label="Measure">
+        </activity>
+        <meta-data android:name="com.google.ar.core" android:value="required"/>
     </application>
 
 </manifest>

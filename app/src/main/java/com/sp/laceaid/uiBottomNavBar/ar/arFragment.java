@@ -1,6 +1,7 @@
 package com.sp.laceaid.uiBottomNavBar.ar;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -61,7 +62,9 @@ public class arFragment extends Fragment {
     }
 
     public void startAR(){
-        Toast.makeText(getActivity(),"AR CAMERA", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(),"AR CAMERA", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getActivity(), MeasureActivity.class);
+        startActivity(intent);
     }
 
 }
