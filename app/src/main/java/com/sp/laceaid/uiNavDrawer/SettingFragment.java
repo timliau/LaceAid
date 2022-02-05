@@ -12,6 +12,8 @@ import com.sp.laceaid.R;
 
 public class SettingFragment extends Fragment {
 
+    // instead of setting change to feedback
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
