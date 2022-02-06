@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.ar.core.ArCoreApk;
 import com.google.ar.core.Camera;
 import com.google.ar.core.Config;
@@ -27,6 +27,10 @@ import com.google.ar.core.exceptions.UnavailableArcoreNotInstalledException;
 import com.google.ar.core.exceptions.UnavailableDeviceNotCompatibleException;
 import com.google.ar.core.exceptions.UnavailableSdkTooOldException;
 import com.google.ar.core.exceptions.UnavailableUserDeclinedInstallationException;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.sp.laceaid.R;
 
 import java.util.ArrayList;
@@ -36,7 +40,7 @@ import java.util.Locale;
 public class MeasureActivity extends Activity {
     private static final String TAG = MeasureActivity.class.getSimpleName();
 
-    private Button mRemove;
+    private FloatingActionButton mUndo, mSave, mBack;
     private TextView mTextView;
     private GLSurfaceView mSurfaceView;
     private MainRenderer mRenderer;
@@ -52,8 +56,12 @@ public class MeasureActivity extends Activity {
     private float mLastY;
     private boolean mPointAdded = false;
 
-    //save Check
-    private Boolean isSaveClick = false;
+    // save data
+    private FirebaseUser user;
+    private DatabaseReference databaseReference;
+    private String userID;
+
+    private double mTotalDistance = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,16 +69,37 @@ public class MeasureActivity extends Activity {
         hideStatusBarAndTitleBar();
         setContentView(R.layout.ar_activity_measure);
 
-        mRemove = findViewById(R.id.btn_remove);
+        mUndo = findViewById(R.id.fab_undo);
+        mSave = findViewById(R.id.fab_save);
+        mBack = findViewById(R.id.fab_back);
         mTextView = (TextView) findViewById(R.id.txt_dist);
         mSurfaceView = (GLSurfaceView) findViewById(R.id.gl_surface_view);
 
-        mRemove.setOnClickListener(v->{
+        // grab data from firebase realtime db
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        // need to add the url as the default location is USA not SEA
+        databaseReference = FirebaseDatabase.getInstance("https://lace-aid-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
+        userID = user.getUid();
+
+        mUndo.setOnClickListener(v->{
             if (!mPoints.isEmpty()) {
                 mPoints.remove(mPoints.size() - 1);
                 mRenderer.removePoint();
                 updateDistance();
             }
+        });
+        
+        mSave.setOnClickListener(v->{
+            if(mTotalDistance == 0) {
+                Toast.makeText(MeasureActivity.this, "You haven't measured the length", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(MeasureActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+                databaseReference.child(userID).child("footLength").setValue(mTotalDistance);
+            }
+        });
+
+        mBack.setOnClickListener(v->{
+            onBackPressed();
         });
 
         DisplayManager displayManager = (DisplayManager) getSystemService(DISPLAY_SERVICE);
@@ -219,9 +248,11 @@ public class MeasureActivity extends Activity {
                         totalDistance += distance;
                     }
                 }
-                String distanceString = String.format(Locale.getDefault(), "%.2f", totalDistance)
-                        + " meter";
+                String distanceString = String.format(Locale.getDefault(), "%.1f", totalDistance * 100)
+                        + " cm";
                 mTextView.setText(distanceString);
+                // this is to log the distance
+                mTotalDistance = Math.round(totalDistance * 100.0 * 10.0) / 10.0;
             }
         });
     }

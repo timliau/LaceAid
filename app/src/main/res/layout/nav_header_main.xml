@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingTop="16dp">
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -21,6 +20,7 @@
             android:layout_marginBottom="20dp"
             android:orientation="horizontal"
             android:paddingStart="16dp"
+            android:paddingTop="16dp"
             android:paddingEnd="16dp">
 
             <ImageView

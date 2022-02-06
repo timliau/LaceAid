@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/app_icon.xml" value="0.14322916666666666" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_remove.xml" value="0.226" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_save.xml" value="0.2255" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_undo.xml" value="0.2255" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/border.xml" value="0.26614583333333336" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/border2.xml" value="0.26614583333333336" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/button.xml" value="0.26614583333333336" />
@@ -42,6 +45,7 @@
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_signup.xml" value="0.2" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_splash.xml" value="0.12708333333333333" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_verify.xml" value="0.2318840579710145" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/ar_activity_measure.xml" value="0.1421875" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/fragment_about.xml" value="0.2006340579710145" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/fragment_ar.xml" value="0.1421875" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/fragment_home.xml" value="0.264" />
