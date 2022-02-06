@@ -1,8 +1,11 @@
 package com.sp.laceaid.uiBottomNavBar.ar;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.hardware.display.DisplayManager;
 import android.opengl.GLSurfaceView;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -12,6 +15,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.ar.core.ArCoreApk;
 import com.google.ar.core.Camera;
@@ -34,6 +38,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class MeasureActivity extends Activity {
+    private static final double MIN_OPENGL_VERSION = 3.0;
+
     private static final String TAG = MeasureActivity.class.getSimpleName();
 
     private Button mRemove;
@@ -58,6 +64,11 @@ public class MeasureActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (!checkIsSupportedDeviceOrFinish(this)) {
+            return;
+        }
+
         hideStatusBarAndTitleBar();
         setContentView(R.layout.ar_activity_measure);
 
@@ -113,7 +124,9 @@ public class MeasureActivity extends Activity {
                 mRenderer.updatePointCloud(pointCloud);
                 pointCloud.release();
 
-                if (mPointAdded) {
+                // make sure there are only two nodes (since we are gonna use it to measure foot size only)
+                // if arbitrary number of nodes is needed, remove mPoints.size() check
+                if (mPointAdded && mPoints.size() < 2) {
                     List<HitResult> results = frame.hitTest(mLastX, mLastY);
                     for (HitResult result : results) {
                         Pose pose = result.getHitPose();
@@ -230,5 +243,27 @@ public class MeasureActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+    }
+
+    // Check whether the device supports the tools required to use the measurement tools
+    private boolean checkIsSupportedDeviceOrFinish(final Activity activity) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            Log.e(TAG, "Requires Android N or later");
+            Toast.makeText(activity, "Requires Android N or later", Toast.LENGTH_LONG).show();
+            activity.finish();
+            return false;
+        }
+        String openGlVersionString =
+                ((ActivityManager) activity.getSystemService(Context.ACTIVITY_SERVICE))
+                        .getDeviceConfigurationInfo()
+                        .getGlEsVersion();
+        if (Double.parseDouble(openGlVersionString) < MIN_OPENGL_VERSION) {
+            Log.e(TAG, "Requires OpenGL ES 3.0 later");
+            Toast.makeText(activity, "Requires OpenGL ES 3.0 or later", Toast.LENGTH_LONG)
+                    .show();
+            activity.finish();
+            return false;
+        }
+        return true;
     }
 }
