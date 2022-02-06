@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/app_icon.xml" value="0.14322916666666666" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_area.xml" value="0.2255" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_remove.xml" value="0.226" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_save.xml" value="0.2255" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_undo.xml" value="0.2255" />
@@ -12,6 +13,10 @@
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/button.xml" value="0.26614583333333336" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/button2.xml" value="0.26614583333333336" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/button3.xml" value="0.26614583333333336" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/button_clear.xml" value="0.2255" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/button_full_rounded.xml" value="0.2255" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/button_outline.xml" value="0.2255" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/button_rounded.xml" value="0.2255" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ic_back.xml" value="0.26614583333333336" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ic_book.xml" value="0.178125" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14322916666666666" />

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,16 +12,64 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/segoe_ui_semibold"
+            android:text="AR Ruler"
+            android:textColor="@color/textGrey"
+            android:textSize="35sp" />
+
+        <TextView
             android:id="@+id/textView10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Placeholder, add ar manual later with shared preference" />
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/segoe_ui"
+            android:text="This AR tool will allow you to measure your foot length effortlessly"
+            android:textColor="@color/textGrey"
+            android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/onCamera"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ar_area" />
+
+        <android.widget.Button
+            android:id="@+id/manual"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="open ar cam" />
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_outline"
+            android:fontFamily="@font/segoe_ui"
+            android:text="Manual"
+            android:textAllCaps="false"
+            android:textSize="19sp"
+            app:cornerRadius="50dp" />
+
+        <android.widget.Button
+            android:id="@+id/onCamera"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_rounded"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:text="Start"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:cornerRadius="50dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
