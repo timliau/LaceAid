@@ -197,13 +197,11 @@ public class MainRenderer implements GLSurfaceView.Renderer {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Log.v("hari", "저장경로:"+dir_image.toString());
+                Log.v("hari", "save path:"+dir_image.toString());
             }
         } catch(Exception e) {
             e.printStackTrace();
         }
-
-
 
     }
 
@@ -275,7 +273,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
     public int addPoint(float[] point) {
         mPoints.add(point);
 
-        Sphere currentPoint = new Sphere(0.01f, Color.GREEN);
+        Sphere currentPoint = new Sphere(0.01f, 0xFF6bd755);
         currentPoint.setProjectionMatrix(mProjMatrix);
 
         float[] translation = new float[16];
@@ -289,7 +287,7 @@ public class MainRenderer implements GLSurfaceView.Renderer {
             float[] start = mPoints.get(mPoints.size() - 2);
             float[] end = mPoints.get(mPoints.size() - 1);
 
-            Line currentLine = new Line(start[0], start[1], start[2], end[0], end[1], end[2], 10, Color.YELLOW);
+            Line currentLine = new Line(start[0], start[1], start[2], end[0], end[1], end[2], 10, 0xFF6bd755);
             currentLine.setProjectionMatrix(mProjMatrix);
 
             float[] identity = new float[16];

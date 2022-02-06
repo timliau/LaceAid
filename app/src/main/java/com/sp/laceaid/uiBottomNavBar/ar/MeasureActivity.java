@@ -114,14 +114,16 @@ public class MeasureActivity extends Activity {
                 pointCloud.release();
 
                 if (mPointAdded) {
-                    List<HitResult> results = frame.hitTest(mLastX, mLastY);
-                    for (HitResult result : results) {
-                        Pose pose = result.getHitPose();
-                        float[] points = new float[]{ pose.tx(), pose.ty(), pose.tz() };
-                        mPoints.add(points);
-                        mRenderer.addPoint(points);
-                        updateDistance();
-                        break;
+                    if (mPoints.size() < 2) {
+                        List<HitResult> results = frame.hitTest(mLastX, mLastY);
+                        for (HitResult result : results) {
+                            Pose pose = result.getHitPose();
+                            float[] points = new float[]{pose.tx(), pose.ty(), pose.tz()};
+                            mPoints.add(points);
+                            mRenderer.addPoint(points);
+                            updateDistance();
+                            break;
+                        }
                     }
                     mPointAdded = false;
                 }
