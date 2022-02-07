@@ -1,16 +1,22 @@
 package com.sp.laceaid.uiBottomNavBar.ar;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.hardware.display.DisplayManager;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.ar.core.ArCoreApk;
@@ -31,6 +37,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.sp.laceaid.Constants;
 import com.sp.laceaid.R;
 
 import java.util.ArrayList;
@@ -40,7 +47,6 @@ import java.util.Locale;
 public class MeasureActivity extends Activity {
     private static final String TAG = MeasureActivity.class.getSimpleName();
 
-    private FloatingActionButton mUndo, mSave, mBack;
     private TextView mTextView;
     private GLSurfaceView mSurfaceView;
     private MainRenderer mRenderer;
@@ -62,6 +68,12 @@ public class MeasureActivity extends Activity {
     private String userID;
 
     private double mTotalDistance = 0;
+    private FloatingActionButton mUndo, mSave, mBack;
+    private Button mClose;
+    private Switch mManualShow;
+    private ConstraintLayout cl_ar, cl_manual;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +81,22 @@ public class MeasureActivity extends Activity {
         hideStatusBarAndTitleBar();
         setContentView(R.layout.ar_activity_measure);
 
+        // hooks
         mUndo = findViewById(R.id.fab_undo);
         mSave = findViewById(R.id.fab_save);
         mBack = findViewById(R.id.fab_back);
+        mClose = findViewById(R.id.close_btn);
+        mManualShow = findViewById(R.id.switch_manual_show);
+        cl_ar = findViewById(R.id.cl_ar);
+        cl_manual = findViewById(R.id.cl_manual);
         mTextView = (TextView) findViewById(R.id.txt_dist);
+
         mSurfaceView = (GLSurfaceView) findViewById(R.id.gl_surface_view);
+
+
+        // check if this is the first time user start ar ruler or still have "don't show again" uncheck
+        needShowManual();
+
 
         // grab data from firebase realtime db
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -100,6 +123,20 @@ public class MeasureActivity extends Activity {
 
         mBack.setOnClickListener(v->{
             onBackPressed();
+        });
+
+        mClose.setOnClickListener(v->{
+            SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFS, MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            // store the switch state
+            editor.putBoolean(Constants.AR_MANUAL_SHOW, mManualShow.isChecked());
+
+            // apply changes
+            editor.apply();
+
+            cl_ar.setVisibility(View.VISIBLE);
+            cl_manual.setVisibility(View.GONE);
         });
 
         DisplayManager displayManager = (DisplayManager) getSystemService(DISPLAY_SERVICE);
@@ -171,6 +208,15 @@ public class MeasureActivity extends Activity {
         mSurfaceView.setEGLContextClientVersion(2);
         mSurfaceView.setRenderer(mRenderer);
         mSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);
+    }
+
+    private void needShowManual() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFS, MODE_PRIVATE);
+
+        if(!sharedPreferences.getBoolean(Constants.AR_MANUAL_SHOW, false)) {
+            cl_manual.setVisibility(View.VISIBLE);
+            cl_ar.setVisibility(View.GONE);
+        }
     }
 
     @Override
