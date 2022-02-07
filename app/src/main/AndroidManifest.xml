@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sp.laceaid">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera.ar" android:required="true"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,18 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.LaceAid">
-        <activity
-            android:name=".uiNavDrawer.SettingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".uiNavDrawer.ProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".uiNavDrawer.InfoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".uiNavDrawer.AboutActivity"
-            android:exported="false" />
         <activity
             android:name=".login.screen.VerifyActivity"
             android:exported="false" />
@@ -52,6 +47,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.sp.laceaid.uiBottomNavBar.ar.MeasureActivity"
+            android:label="Measure">
+        </activity>
+        <meta-data android:name="com.google.ar.core" android:value="required"/>
     </application>
 
 </manifest>

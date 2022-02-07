@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/arrow1"
             android:layout_width="40dp"
-            android:layout_height="25dp"
+            android:layout_height="20dp"
             android:layout_gravity="left"
             app:srcCompat="@drawable/ic_back" />
 
@@ -110,7 +110,7 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="35dp"
             android:layout_marginEnd="30dp"
-            android:background="@drawable/button3"
+            android:background="@drawable/button_full_rounded"
             android:fontFamily="@font/segoe_ui_bold"
             android:text="Log in"
             android:textAllCaps="false"
