@@ -14,7 +14,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.sp.laceaid.R;
@@ -22,6 +24,7 @@ import com.sp.laceaid.R;
 public class arFragment extends Fragment {
 
     private Button onCamera;
+    private ImageView node, map;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -36,6 +39,8 @@ public class arFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         onCamera = getView().findViewById(R.id.onCamera);
+        node = getView().findViewById(R.id.iv_nodes);
+        map = getView().findViewById(R.id.iv_map);
 
         onCamera.setOnClickListener(v->{
             // check camera permission
@@ -43,6 +48,11 @@ public class arFragment extends Fragment {
                     != PackageManager.PERMISSION_GRANTED){
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
             } else startAR();   // run if granted
+        });
+
+        map.setOnClickListener(v->{
+            node.setVisibility(View.VISIBLE);
+            node.startAnimation(AnimationUtils.loadAnimation(getActivity(), android.R.anim.fade_in));
         });
     }
 

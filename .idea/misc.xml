@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/app_icon.xml" value="0.14322916666666666" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_area.xml" value="0.2255" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_back.xml" value="0.1445" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_remove.xml" value="0.226" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_save.xml" value="0.2255" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ar_undo.xml" value="0.2255" />
@@ -24,6 +25,7 @@
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ic_log_bg_3.xml" value="0.14322916666666666" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ic_running.xml" value="0.178125" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/ic_warning_svgrepo_com.xml" value="0.178125" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/line.xml" value="0.1445" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/nav_background.xml" value="0.2345" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/nav_home.xml" value="0.2345" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/drawable/nav_ruler.xml" value="0.152" />
