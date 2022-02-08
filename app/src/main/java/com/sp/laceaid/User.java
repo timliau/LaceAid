@@ -7,6 +7,7 @@ public class User {
     private User(){
     }
 
+    // to compile the data then push to firebase
     public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -24,4 +25,5 @@ public class User {
     public String getEmail() {
         return email;
     }
+
 }

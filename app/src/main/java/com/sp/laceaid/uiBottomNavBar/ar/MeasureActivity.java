@@ -16,7 +16,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.ar.core.ArCoreApk;
@@ -35,10 +37,15 @@ import com.google.ar.core.exceptions.UnavailableSdkTooOldException;
 import com.google.ar.core.exceptions.UnavailableUserDeclinedInstallationException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.sp.laceaid.Constants;
+import com.sp.laceaid.MainActivity;
 import com.sp.laceaid.R;
+import com.sp.laceaid.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +79,7 @@ public class MeasureActivity extends Activity {
     private Button mClose;
     private Switch mManualShow;
     private ConstraintLayout cl_ar, cl_manual;
-
+    private TextView mSavedLength;
 
 
     @Override
@@ -89,6 +96,8 @@ public class MeasureActivity extends Activity {
         mManualShow = findViewById(R.id.switch_manual_show);
         cl_ar = findViewById(R.id.cl_ar);
         cl_manual = findViewById(R.id.cl_manual);
+        mSavedLength = findViewById(R.id.saved_length);
+
         mTextView = (TextView) findViewById(R.id.txt_dist);
 
         mSurfaceView = (GLSurfaceView) findViewById(R.id.gl_surface_view);
@@ -113,11 +122,15 @@ public class MeasureActivity extends Activity {
         });
         
         mSave.setOnClickListener(v->{
+            // todo : check when foot length < 5 cm
             if(mTotalDistance == 0) {
                 Toast.makeText(MeasureActivity.this, "You haven't measured the length", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(MeasureActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                 databaseReference.child(userID).child("footLength").setValue(mTotalDistance);
+
+                String output = "Saved: " + mTotalDistance;
+                mSavedLength.setText(output);
             }
         });
 
@@ -137,6 +150,26 @@ public class MeasureActivity extends Activity {
 
             cl_ar.setVisibility(View.VISIBLE);
             cl_manual.setVisibility(View.GONE);
+        });
+
+        // get saved measurement from rtdb
+        databaseReference.child(userID).child("footLength").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // check if length value exist in rtdb
+                try{
+                    double footLength = (Double) snapshot.getValue();
+                    String output = "Saved: " + footLength;
+                    mSavedLength.setText(output);
+                }catch (Exception ignored) {
+
+                };
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MeasureActivity.this, "Cannot get measurement data", Toast.LENGTH_LONG).show();
+            }
         });
 
         DisplayManager displayManager = (DisplayManager) getSystemService(DISPLAY_SERVICE);
