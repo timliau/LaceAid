@@ -102,14 +102,22 @@ public class arFragment extends Fragment {
     }
 
     public void checkSize(double footLength) {
-        int us = 6, eur = 39, uk = 5, min = 24;
+        int us = 4, eur = 37, uk = 3;
+        double min = 22.7, max = 31.0;
 
         int k = (int) Math.round((footLength - min) / 0.65);
 
-        meas_cm.setText(""+footLength);
-        meas_us.setText(k+us+"");
-        meas_eur.setText(k+eur+"");
-        meas_uk.setText(k+uk+"");
+        if(footLength >= min && footLength <= max) {
+            meas_cm.setText("" + footLength);
+            meas_us.setText(k + us + "");
+            meas_eur.setText(k + eur + "");
+            meas_uk.setText(k + uk + "");
+        } else {
+            meas_cm.setText("" + footLength);
+            meas_us.setText("?");
+            meas_eur.setText("?");
+            meas_uk.setText("?");
+        }
     }
 
     // can use onStart too
