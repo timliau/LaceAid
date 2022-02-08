@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.ar.core.ArCoreApk;
@@ -151,7 +152,7 @@ public class MeasureActivity extends Activity {
             cl_manual.setVisibility(View.GONE);
         });
 
-        // update saved measurement from rtdb
+        // get saved measurement from rtdb
         databaseReference.child(userID).child("footLength").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

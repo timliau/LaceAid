@@ -167,7 +167,7 @@
                         android:textSize="24sp" />
 
                     <TextView
-                        android:id="@+id/mes_uk"
+                        android:id="@+id/meas_uk"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"

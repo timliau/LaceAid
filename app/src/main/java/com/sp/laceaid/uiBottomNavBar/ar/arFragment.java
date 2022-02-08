@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,21 +18,34 @@ import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.sp.laceaid.R;
 
 public class arFragment extends Fragment {
 
     private Button onCamera;
     private ImageView node, map;
+    private TextView meas_cm, meas_us, meas_uk, meas_eur;
+
+    // firebase
+    private FirebaseUser user;
+    private DatabaseReference databaseReference;
+    private String userID;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_ar, container, false);
-
     }
 
     @Override
@@ -41,6 +55,16 @@ public class arFragment extends Fragment {
         onCamera = getView().findViewById(R.id.onCamera);
         node = getView().findViewById(R.id.iv_nodes);
         map = getView().findViewById(R.id.iv_map);
+        meas_cm = getView().findViewById(R.id.meas_cm);
+        meas_eur = getView().findViewById(R.id.meas_eur);
+        meas_uk = getView().findViewById(R.id.meas_uk);
+        meas_us = getView().findViewById(R.id.meas_us);
+
+        // grab data from firebase realtime db
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        // need to add the url as the default location is USA not SEA
+        databaseReference = FirebaseDatabase.getInstance("https://lace-aid-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
+        userID = user.getUid();
 
         onCamera.setOnClickListener(v->{
             // check camera permission
@@ -77,4 +101,41 @@ public class arFragment extends Fragment {
         startActivity(intent);
     }
 
+    public void checkSize(double footLength) {
+        int us = 6, eur = 39, uk = 5, min = 24;
+
+        int k = (int) Math.round((footLength - min) / 0.65);
+
+        meas_cm.setText(""+footLength);
+        meas_us.setText(k+us+"");
+        meas_eur.setText(k+eur+"");
+        meas_uk.setText(k+uk+"");
+    }
+
+    // can use onStart too
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // get saved measurement from rtdb
+        databaseReference.child(userID).child("footLength").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // check if length value exist in rtdb
+                try{
+                    double footLength = (Double) snapshot.getValue();
+
+                    checkSize(footLength);
+
+                }catch (Exception ignored) {
+
+                };
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Cannot get measurement data", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }
