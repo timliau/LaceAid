@@ -48,13 +48,11 @@ public class SplashActivity extends AppCompatActivity {
         // this function will run when the video ends
         videoView.setOnCompletionListener(mp -> {
             videoView.setVisibility(View.GONE);    // make the videoView invisible to hide the hideous white screen at the end
-
             if(firebaseUser == null || !firebaseUser.isEmailVerified()) {
                 startActivity(new Intent(SplashActivity.this, LoginOptionsActivity.class));
             } else {
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
             }
-
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();
         });
