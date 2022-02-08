@@ -4,26 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.SystemClock;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
+import com.google.firebase.auth.FirebaseUser;
+import com.sp.laceaid.login.screen.LoginOptionsActivity;
 
 public class SplashActivity extends AppCompatActivity {
     //private final int DURATION = (int)(1000 * 2);
     private VideoView videoView;
-
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +34,8 @@ public class SplashActivity extends AppCompatActivity {
             finish();
         }, DURATION);
         */
+
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     @Override
@@ -52,7 +48,13 @@ public class SplashActivity extends AppCompatActivity {
         // this function will run when the video ends
         videoView.setOnCompletionListener(mp -> {
             videoView.setVisibility(View.GONE);    // make the videoView invisible to hide the hideous white screen at the end
-            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+
+            if(firebaseUser == null || !firebaseUser.isEmailVerified()) {
+                startActivity(new Intent(SplashActivity.this, LoginOptionsActivity.class));
+            } else {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+            }
+
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();
         });

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.screen.LoginOptionsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/segoe_ui"
+            android:text="Lace Aid"
+            android:textAlignment="center"
+            android:textColor="#4dc335"
+            android:textSize="45sp" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="380dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="190dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/login_illustration" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="420dp"
+            android:fontFamily="@font/segoe_ui"
+            android:text="Log in or sign up for free"
+            android:textColor="@color/dark_grey"
+            android:textSize="16dp" />
+
+        <android.widget.Button
+            android:id="@+id/button_login_option"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView5"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="65dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_rounded"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:text="Log in"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:cornerRadius="50dp" />
+
+        <android.widget.Button
+            android:id="@+id/button_signup_option"
+            android:layout_width="220dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_login_option"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:background="@drawable/button_clear"
+            android:fontFamily="@font/segoe_ui"
+            android:minWidth="220dp"
+            android:stateListAnimator="@null"
+            android:text="Sign up"
+            android:textAllCaps="false"
+            android:textColor="@color/signup"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

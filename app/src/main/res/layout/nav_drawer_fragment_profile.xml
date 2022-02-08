@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".uiNavDrawer.ProfileFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="10dp"
+                android:text="Update profile"
+                android:textColor="@color/textGrey"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/segoe_ui_semibold"
+                android:text="First name" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtly_first"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_first"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/segoe_ui_semibold"
+                android:text="Last name" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtly_last"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_last"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/segoe_ui_semibold"
+                android:text="Current password" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtly_current"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/primary"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_current"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/segoe_ui_semibold"
+                android:text="New password" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtly_new"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/primary"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_new"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="30dp"
+                android:fontFamily="@font/segoe_ui_semibold"
+                android:text="Confirm new password" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtly_confirm"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/primary"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/btn_save"
+                android:layout_width="130dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="60dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardBackgroundColor="@color/primary"
+                app:cardCornerRadius="13dp">
+
+                <TextView
+                    android:id="@+id/tv_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/segoe_ui_semibold"
+                    android:text="Save"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+                <ProgressBar
+                    android:id="@+id/profileProgressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminateTint="@color/white"
+                    android:padding="8dp"
+                    android:visibility="gone" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

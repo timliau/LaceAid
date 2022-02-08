@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
+        <item
+            android:id="@+id/nav_profile"
+            android:title="Profile"
+            android:icon="@drawable/navdrawer_person" />
+        <item
+            android:id="@+id/nav_setting"
+            android:title="Setting"
+            android:icon="@drawable/navdrawer_setting" />
+        <item
+            android:id="@+id/nav_manual"
+            android:icon="@drawable/navdrawer_manual"
+            android:title="Manual" />
+        <item
+            android:id="@+id/nav_about"
+            android:title="About"
+            android:icon="@drawable/navdrawer_about" />
+        <item
+            android:id="@+id/logout"
+            android:title="Log out"
+            android:icon="@drawable/navdrawer_logout" />
+    </group>
+</menu>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="3dp"
+        app:cardMaxElevation="3dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="16dp">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical"
+                app:srcCompat="@drawable/app_icon"
+                app:tint="@color/primary" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/segoe_ui"
+                android:text="Lace Aid"
+                android:textColor="@color/dark_grey"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvnh_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/segoe_ui_semibold"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text=" "
+        android:textColor="@color/primary"
+        android:textSize="24sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tvnh_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/segoe_ui"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text=" "
+        android:textSize="16sp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/dark_grey" />
+</LinearLayout>

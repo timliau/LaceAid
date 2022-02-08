@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.screen.VerifyActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@color/black">
+
+        <ImageView
+            android:id="@+id/arrow1"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_gravity="left"
+            app:srcCompat="@drawable/ic_back" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/verification_layout"
+        android:layout_width="400dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar1"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/segoe_ui_semibold"
+            android:text="Verify your identity by confirming your email"
+            android:textAlignment="center"
+            android:textColor="@color/textGrey"
+            android:textSize="21sp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="30dp"
+            app:srcCompat="@drawable/login_paper_plane" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:fontFamily="@font/segoe_ui_semibold"
+            android:text="Check your email"
+            android:textAlignment="center"
+            android:textColor="@color/textGrey"
+            android:textSize="21sp" />
+
+        <TextView
+            android:id="@+id/tv_verificationEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/segoe_ui"
+            android:text="To confirm your email address, tap the link in the email we sent"
+            android:textColor="@color/dark_grey"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:fontFamily="@font/segoe_ui"
+                android:text="Did not receive the email? Check the spam folder,"
+                android:textAlignment="center"
+                android:textColor="@color/dark_grey"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_chooseEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/segoe_ui_bold"
+                android:text="or try another email address"
+                android:textAlignment="center"
+                android:textColor="@color/link"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

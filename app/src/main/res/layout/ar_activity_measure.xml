@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="@color/primary">
+
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/gl_surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_ar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txt_dist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="56dp"
+            android:fontFamily="@font/segoe_ui_semibold"
+            android:textColor="#4DC335"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:clickable="true"
+            android:contentDescription="save"
+            android:focusable="true"
+            app:backgroundTint="@color/white"
+            app:fabCustomSize="80dp"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:maxImageSize="40dp"
+            app:srcCompat="@drawable/ar_save" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_undo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-30dp"
+            android:layout_marginBottom="41dp"
+            android:clickable="true"
+            android:contentDescription="undo"
+            app:backgroundTint="@color/primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fab_save"
+            app:srcCompat="@drawable/ar_undo" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="-30dp"
+            android:layout_marginBottom="41dp"
+            android:clickable="true"
+            android:contentDescription="back"
+            app:backgroundTint="@color/primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fab_save"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ar_back" />
+
+        <TextView
+            android:id="@+id/saved_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-10dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/ar_savebg"
+            android:fontFamily="@font/segoe_ui"
+            android:paddingStart="15dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="4dp"
+            android:text="Saved:  0"
+            android:textColor="@color/primary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/fab_undo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fab_save" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_manual"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000"
+        android:visibility="gone">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="25dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView24"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/segoe_ui_semibold"
+                    android:text="Before you begin,"
+                    android:textSize="24sp" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp">
+
+                        <TextView
+                            android:id="@+id/textView26"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/segoe_ui"
+                            android:text="1. "
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/textView25"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/segoe_ui"
+                            android:text="Ensure good lighting"
+                            android:textSize="18sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp">
+
+                        <TextView
+                            android:id="@+id/textView27"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/segoe_ui"
+                            android:text="2. "
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/textView28"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/segoe_ui"
+                            android:text="Stand on flat textured surface, as they are more visible to the app"
+                            android:textSize="18sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp">
+
+                        <TextView
+                            android:id="@+id/textView29"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/segoe_ui"
+                            android:text="3. "
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/textView30"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/segoe_ui"
+                            android:text="Aim the camera at your foot"
+                            android:textSize="18sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="5dp">
+
+                        <TextView
+                            android:id="@+id/textView31"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/segoe_ui"
+                            android:text="4. "
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/textView32"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/segoe_ui"
+                            android:text="Click at both end of your foot to place the nodes for measuring"
+                            android:textSize="18sp" />
+                    </TableRow>
+                </TableLayout>
+
+                <Switch
+                    android:id="@+id/switch_manual_show"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/segoe_ui_semibold"
+                    android:minHeight="48dp"
+                    android:text="Don't show again" />
+
+                <android.widget.Button
+                    android:id="@+id/close_btn"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/button_full_rounded"
+                    android:fontFamily="@font/segoe_ui_bold"
+                    android:text="Close"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:cornerRadius="30dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
