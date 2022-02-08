@@ -6,6 +6,8 @@ plugins {
 android {
     compileSdk 31
 
+    useLibrary "org.apache.http.legacy"
+    
     defaultConfig {
         applicationId "com.sp.laceaid"
         minSdk 21

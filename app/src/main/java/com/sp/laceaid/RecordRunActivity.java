@@ -144,6 +144,7 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
     }
 
     private void endRun() {
+        pauseDifference = System.currentTimeMillis();
         fusedLocationProviderClient.removeLocationUpdates(locationCallBack);
         new AlertDialog.Builder(RecordRunActivity.this)
                 .setTitle("End Run")
@@ -156,6 +157,8 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
                         runStarted = false;
                         startButton.setText("Start New Run");
                         routePoints.clear();
+                        startTime = 0;
+                        pauseDifference = 0;
                         if (route != null)
                             route.remove();
                     }
