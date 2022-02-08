@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_marginTop="56dp"
+            android:fontFamily="@font/segoe_ui_semibold"
             android:textColor="#4DC335"
             android:textSize="40sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,6 +75,25 @@
             app:layout_constraintEnd_toStartOf="@+id/fab_save"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ar_back" />
+
+        <TextView
+            android:id="@+id/saved_length"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="-10dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/ar_savebg"
+            android:fontFamily="@font/segoe_ui"
+            android:paddingStart="15dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="15dp"
+            android:paddingBottom="4dp"
+            android:text="Saved:  0"
+            android:textColor="@color/primary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/fab_undo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fab_save" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
