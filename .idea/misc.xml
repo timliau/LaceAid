@@ -55,6 +55,9 @@
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_signup.xml" value="0.2" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_splash.xml" value="0.12708333333333333" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_verify.xml" value="0.2318840579710145" />
+
+
+
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/ar_activity_measure.xml" value="0.176" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/fragment_about.xml" value="0.2006340579710145" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/fragment_ar.xml" value="0.2" />
@@ -78,6 +81,7 @@
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/menu/nav_bar_menu.xml" value="0.16197916666666667" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/menu/nav_drawer.xml" value="0.16197916666666667" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/menu/nav_drawer_menu.xml" value="0.25" />
+
       </map>
     </option>
   </component>
