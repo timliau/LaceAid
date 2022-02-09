@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -41,7 +42,7 @@ import java.util.List;
 
 public class RecordRunActivity extends FragmentActivity implements OnMapReadyCallback{
 
-    public static final int DEFAULT_UPDATE_INTERVAL = 10;
+    public static final int DEFAULT_UPDATE_INTERVAL = 1;
     public static final int FAST_UPDATE_INTERVAL = 1;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
     private GoogleMap map;
@@ -131,7 +132,7 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
                 startButton.setText("Resume Run");
                 runInProgress = false;
                 endRun();
-            }
+            } else finish();
 
         });
 
@@ -312,6 +313,7 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
         LatLng prevLocation = new LatLng(location.getLatitude(), location.getLongitude());
         routePoints.add(prevLocation);
         PolylineOptions polylineOptions = new PolylineOptions().addAll(routePoints);
+        polylineOptions.color(Color.parseColor("#46A234"));
         route = map.addPolyline(polylineOptions);
     }
 

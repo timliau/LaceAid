@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="bottom"
     android:orientation="vertical">
 
     <fragment
@@ -18,19 +19,21 @@
         <TextView
             android:id="@+id/currentLocationTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
             android:paddingStart="16dp"
             android:text="Current location:"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_currentLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginTop="16dp"
             android:layout_weight="1"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:gravity="bottom"
             android:paddingStart="16dp"
             android:text="Waiting"
             android:textSize="20sp"
@@ -45,17 +48,19 @@
         <TextView
             android:id="@+id/totalDistanceTextView4"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif"
             android:paddingStart="16dp"
             android:text="Time elapsed: "
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:gravity="bottom"
             android:paddingStart="16dp"
             android:text="00:00"
             android:textSize="20sp"
@@ -70,17 +75,19 @@
         <TextView
             android:id="@+id/totalDistanceTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif"
             android:paddingStart="16dp"
             android:text="Total distance: "
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_distance"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:gravity="bottom"
             android:paddingStart="16dp"
             android:text="0 km"
             android:textSize="20sp"
@@ -95,19 +102,21 @@
         <TextView
             android:id="@+id/averagePaceTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
+            android:fontFamily="sans-serif"
             android:paddingStart="16dp"
             android:text="Pace: "
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_pace"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginBottom="16dp"
             android:layout_weight="1"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:gravity="bottom"
             android:paddingStart="16dp"
             android:text="0 min/km"
             android:textSize="20sp"
@@ -116,23 +125,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="81dp"
         android:paddingHorizontal="16dp">
 
         <Button
             android:id="@+id/startButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="2mm"
             android:layout_weight="1"
-            android:text="start new run" />
+            android:background="@drawable/button_full_rounded"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:text="start new run"
+            android:textColor="@color/cultured"
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/endButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:layout_marginStart="8dp"
+            android:layout_marginBottom="2mm"
             android:layout_weight="1"
-            android:text="end run" />
+            android:background="@drawable/button_full_rounded"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:text="end run"
+            android:textColor="@color/cultured"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

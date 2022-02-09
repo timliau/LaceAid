@@ -46,7 +46,7 @@ public class runRecorderFragment extends Fragment {
     ListView runList;
     ArrayAdapter<String> adapter;
     TextView UID;
-    FloatingActionButton addButton;
+    Button addButton;
 
     // firebase
     private FirebaseUser user;
@@ -140,8 +140,12 @@ public class runRecorderFragment extends Fragment {
                         String timeElapsed = record.getString("timeElapsed");
                         Double totalDistance = record.getDouble("totalDistance");
 
-                        String line = id + "-" + username + "-" + timeElapsed + "-" + totalDistance;
-                        adapter.add(line);
+                        if (username == userID){
+                            String line = id + "-" + username + "-" + timeElapsed + "-" + totalDistance;
+                            adapter.add(line);
+                        }
+
+
                     }
                 } else {
                     Toast.makeText(getContext(), "There are no records in database", Toast.LENGTH_SHORT).show();
