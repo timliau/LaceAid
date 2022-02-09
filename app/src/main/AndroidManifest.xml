@@ -34,6 +34,7 @@
             android:name=".RecordRunActivity"
             android:exported="false" />
 
+        <activity
             android:name=".login.screen.VerifyActivity"
 
             android:exported="false" />

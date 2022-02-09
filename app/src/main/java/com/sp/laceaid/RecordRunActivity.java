@@ -31,17 +31,22 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class RecordRunActivity extends FragmentActivity implements OnMapReadyCallback{
-//public class RecordRunActivity extends AppCompatActivity {
 
     public static final int DEFAULT_UPDATE_INTERVAL = 10;
     public static final int FAST_UPDATE_INTERVAL = 1;
     private static final int PERMISSIONS_FINE_LOCATION = 99;
     private GoogleMap map;
+
+    private RecordHelper helper;
 
     Polyline route = null;
     ArrayList<LatLng> routePoints = new ArrayList<>();
@@ -60,10 +65,23 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
 
     FusedLocationProviderClient fusedLocationProviderClient;
 
+    // firebase
+    private FirebaseUser user;
+    private DatabaseReference databaseReference;
+    private String userID;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_record_run);
+
+        // grab data from firebase realtime db
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        // need to add the url as the default location is USA not SEA
+        databaseReference = FirebaseDatabase.getInstance("https://lace-aid-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
+        userID = user.getUid();
+
 
         tv_currentLocation = findViewById(R.id.tv_currentLocation);
         tv_currentLocation.setText("Not Tracking Location");
@@ -153,14 +171,20 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
                 .setPositiveButton("Save", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Run Activity Ended", Toast.LENGTH_SHORT).show();
-                        runStarted = false;
-                        startButton.setText("Start New Run");
-                        routePoints.clear();
-                        startTime = 0;
-                        pauseDifference = 0;
-                        if (route != null)
-                            route.remove();
+                        try {
+                            saveRun();
+                            runStarted = false;
+                            startButton.setText("Start New Run");
+                            routePoints.clear();
+                            startTime = 0;
+                            pauseDifference = 0;
+                            if (route != null)
+                                route.remove();
+                            Toast.makeText(getApplicationContext(), "Run Saved", Toast.LENGTH_SHORT).show();
+                        } catch (Exception e){
+                            Toast.makeText(getApplicationContext(), "Unable to save run", Toast.LENGTH_SHORT).show();
+                        }
+                        finish();
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -315,9 +339,19 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
         }
     }
 
+
+
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         map = googleMap;
+    }
+
+    private void saveRun(){
+        helper.insertInfo(
+                "" + user,
+                "" + totalTime,
+                "" + totalDistance
+        );
     }
 
 
