@@ -42,7 +42,6 @@ public class runRecorderFragment extends Fragment {
     TextView overallMileage, noRunText;
     Button addButton;
     Double mileage;
-    int listEmpty;
 
     // firebase
     private FirebaseUser user;
@@ -71,7 +70,6 @@ public class runRecorderFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance("https://lace-aid-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
         userID = user.getUid();
 
-        listEmpty = 0;
         mileage = 0.0;
 
         addButton = getView().findViewById(R.id.addButton);
@@ -146,9 +144,8 @@ public class runRecorderFragment extends Fragment {
                             double roundedMileage = Math.round(mileage*100.0)/100.0;
                             overallMileage.setText("Overall Mileage: "+ roundedMileage + "km");
                             adapter.add(line);
-                            listEmpty += 1;
                         }
-                        if (listEmpty == 0){
+                        if (adapter.getCount() == 0){
                             noRunText.setVisibility(View.VISIBLE);
                         }
                     }
