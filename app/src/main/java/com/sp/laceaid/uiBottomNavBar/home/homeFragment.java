@@ -162,9 +162,11 @@ public class homeFragment extends Fragment {
         if (myBluetooth == null) {
             Toast.makeText(getActivity(), "Your device does not support bluetooth", Toast.LENGTH_SHORT).show();
         }
-        if (!myBluetooth.isEnabled()) {
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, 1);
+        else {
+            if (!myBluetooth.isEnabled()) {
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, 1);
+            }
         }
         //Find = getView().findViewById(R.id.Find);
         connect = getView().findViewById(R.id.connect);
