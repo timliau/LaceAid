@@ -11,7 +11,6 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -70,7 +69,7 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
     // firebase
     private FirebaseUser user;
     private DatabaseReference databaseReference;
-    private String userID;
+    private String username;
 
 
     @Override
@@ -82,7 +81,7 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
         user = FirebaseAuth.getInstance().getCurrentUser();
         // need to add the url as the default location is USA not SEA
         databaseReference = FirebaseDatabase.getInstance("https://lace-aid-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
-        userID = user.getUid();
+        username = user.getUid();
 
 
         tv_currentLocation = findViewById(R.id.tv_currentLocation);
@@ -359,7 +358,7 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
 
     public void onSave(){
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute("insert", ""+userID, ""+displayTime, ""+totalDistance);
+        backgroundWorker.execute("insert", username, displayTime, ""+totalDistance);
     }
 
 

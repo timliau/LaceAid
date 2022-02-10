@@ -1,8 +1,6 @@
 package com.sp.laceaid.uiBottomNavBar.run;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -17,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -27,15 +24,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.sp.laceaid.R;
 import com.sp.laceaid.RecordRunActivity;
-import com.sp.laceaid.RunList;
-import com.sp.laceaid.uiBottomNavBar.ar.MeasureActivity;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -45,10 +39,10 @@ import java.net.URI;
 public class runRecorderFragment extends Fragment {
     ListView runList;
     ArrayAdapter<String> adapter;
-    TextView UID, noRunText;
+    TextView overallMileage, noRunText;
     Button addButton;
     Double mileage;
-    Boolean listEmpty = true;
+    int listEmpty;
 
     // firebase
     private FirebaseUser user;
@@ -77,6 +71,7 @@ public class runRecorderFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance("https://lace-aid-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
         userID = user.getUid();
 
+        listEmpty = 0;
         mileage = 0.0;
 
         addButton = getView().findViewById(R.id.addButton);
@@ -88,7 +83,7 @@ public class runRecorderFragment extends Fragment {
             }
         });
         noRunText = getView().findViewById(R.id.noRunText);
-        UID = getView().findViewById(R.id.tv_UID);
+        overallMileage = getView().findViewById(R.id.tv_UID);
 //        UID.setText(userID);
         runList = getView().findViewById(R.id.runList);
         adapter = new ArrayAdapter<String>(getContext(), R.layout.record_row, R.id.recordText);
@@ -145,16 +140,18 @@ public class runRecorderFragment extends Fragment {
                         Double totalDistance = record.getDouble("totalDistance");
                         double roundedTotalDistance = Math.round(totalDistance*100.0)/100.0;
 
-                        if (username == userID){
+                        if (username.equals(userID)){
                             String line = "Distance: " + roundedTotalDistance + "km - Duration: " + timeElapsed;
                             mileage += totalDistance;
                             double roundedMileage = Math.round(mileage*100.0)/100.0;
-                            UID.setText("Overall Mileage: "+ roundedMileage + "km");
+                            overallMileage.setText("Overall Mileage: "+ roundedMileage + "km");
                             adapter.add(line);
-                            listEmpty = false;
+                            listEmpty += 1;
+                        }
+                        if (listEmpty == 0){
+                            noRunText.setVisibility(View.VISIBLE);
                         }
                     }
-                    if (listEmpty = true) noRunText.setVisibility(View.VISIBLE);
                 } else {
                     noRunText.setVisibility(View.VISIBLE);
                 }
