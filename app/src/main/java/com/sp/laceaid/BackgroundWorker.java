@@ -1,5 +1,6 @@
 package com.sp.laceaid;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -15,6 +16,7 @@ import java.net.URLEncoder;
 
 public class BackgroundWorker extends AsyncTask<String, Void, String> {
     Context context;
+    AlertDialog alertDialog;
 
     BackgroundWorker(Context c){
         context = c;
@@ -23,12 +25,13 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         String type = params[0];
+        String insert_url = "http://222.164.5.103/laceaid/insert.php";
         if(type.equals("insert")) {
             try{
                 String username = params[1];
                 String timeElapsed = params[2];
                 String totalDistance = params[3];
-                URL url = new URL("http://222.164.5.103/laceaid/insert.php");
+                URL url = new URL(insert_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
@@ -62,12 +65,15 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPreExecute() {
-        super.onPreExecute();
+        alertDialog = new AlertDialog.Builder(context).create();
+
     }
 
     @Override
-    protected void onPostExecute(String v) {
-        super.onPostExecute(v);
+    protected void onPostExecute(String result) {
+
+        alertDialog.setMessage(result);
+        alertDialog.show();
     }
 
     @Override
