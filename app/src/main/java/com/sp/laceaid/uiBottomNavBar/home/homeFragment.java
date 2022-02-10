@@ -76,4 +76,5 @@ public class homeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // getView(), view, or getActivity()
     }
+
 }

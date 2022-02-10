@@ -19,15 +19,13 @@
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_login_options.xml" value="0.176" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_main.xml" value="0.1234375" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_run_list.xml" value="0.1421875" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_signup.xml" value="0.2" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_splash.xml" value="0.12708333333333333" />
         <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/activity_verify.xml" value="0.2318840579710145" />
+        <entry key="..\:/mobile_app/LaceAid/app/src/main/res/layout/fragment_ar.xml" value="0.1421875" />
         <entry key="app/src/main/res/layout/activity_forgor.xml" value="0.16641337386018237" />
         <entry key="app/src/main/res/layout/activity_record_run.xml" value="0.25" />
-<<<<<<< Updated upstream
-=======
-        <entry key="app/src/main/res/layout/activity_run_list.xml" value="0.25" />
->>>>>>> Stashed changes
         <entry key="app/src/main/res/layout/activity_view_completed.xml" value="0.16641337386018237" />
         <entry key="app/src/main/res/layout/activity_view_upcoming.xml" value="0.16641337386018237" />
         <entry key="app/src/main/res/layout/fragment_ar.xml" value="0.25" />
