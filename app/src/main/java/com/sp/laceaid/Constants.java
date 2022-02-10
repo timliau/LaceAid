@@ -4,6 +4,7 @@ public class Constants {
     public static final String SHARED_PREFS = "laceAidSharedPrefs";
     public static final String AR_MANUAL_SHOW = "arManualShow";
     public static final String HOME_MANUAL_SHOW = "homeManualShow";
+    public static final String IS_BT_CONNECTED = "isBluetoothConnected";
 
     public static final String DB_NAME = "LACE_AID_DB";
     public static final int DB_VERSION = 1;

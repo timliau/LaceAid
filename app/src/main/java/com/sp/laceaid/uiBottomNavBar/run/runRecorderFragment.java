@@ -61,6 +61,11 @@ public class runRecorderFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
@@ -145,9 +150,9 @@ public class runRecorderFragment extends Fragment {
                             overallMileage.setText("Overall Mileage: "+ roundedMileage + "km");
                             adapter.add(line);
                         }
-                        if (adapter.getCount() == 0){
-                            noRunText.setVisibility(View.VISIBLE);
-                        }
+//                        if (adapter.getCount() == 0){
+//                            noRunText.setVisibility(View.VISIBLE);
+//                        }
                     }
                 } else {
                     noRunText.setVisibility(View.VISIBLE);

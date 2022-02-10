@@ -4,7 +4,9 @@ import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 
@@ -12,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
@@ -34,6 +37,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sp.laceaid.Constants;
 import com.sp.laceaid.R;
 import com.sp.laceaid.User;
 import com.sp.laceaid.login.screen.LoginOptionsActivity;
@@ -66,11 +70,12 @@ public class homeFragment extends Fragment {
     private String mParam1;
     private String mParam2;
     private String address = "", name = "";
-    public boolean connected;
+    public boolean connected = false;
 
     private MaterialCardView connect;
-    private CardView tighten;
+    private CardView tighten, tighten2;
     private TextView homeName;
+    private ImageView Find, shoeicon;
 
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
@@ -111,11 +116,11 @@ public class homeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getActivity(), "" + connected, Toast.LENGTH_SHORT).show();
-        if (connected) {
-            connect.setCardBackgroundColor(0xffe1f7dd);
-            connect.setStrokeColor(0xffA1A1A1);
-        }
+//        Toast.makeText(getActivity(), "" + connected, Toast.LENGTH_SHORT).show();
+//        if (connected) {
+//            connect.setCardBackgroundColor(0xffe1f7dd);
+//            connect.setStrokeColor(0xffA1A1A1);
+//        }
     }
 
     @Override
@@ -138,6 +143,23 @@ public class homeFragment extends Fragment {
         userID = user.getUid();
         homeName = getView().findViewById(R.id.homeName);
 
+        Find = getView().findViewById(R.id.Find);
+        shoeicon = getView().findViewById(R.id.shoeicon);
+        connect = getView().findViewById(R.id.connect);
+        tighten = getView().findViewById(R.id.tighten);
+        tighten2 = getView().findViewById(R.id.tighten2);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE);
+
+        if(sharedPreferences.getBoolean(Constants.IS_BT_CONNECTED, false)) {
+            connect.setCardBackgroundColor(0xffe1f7dd);
+            connect.setStrokeColor(0xffA1A1A1);
+            Find.setColorFilter(ContextCompat.getColor(getContext(), R.color.primary), android.graphics.PorterDuff.Mode.SRC_IN);
+            tighten.setCardBackgroundColor(0xffa8e79b);
+            tighten2.setCardBackgroundColor(0xff6BD755);
+            shoeicon.setColorFilter(ContextCompat.getColor(getContext(), R.color.dark_grey), android.graphics.PorterDuff.Mode.SRC_IN);
+        }
+
         // update name and email in nav drawer when user load (first time + only once)
         databaseReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -146,6 +168,7 @@ public class homeFragment extends Fragment {
 
                 if(userprofile != null) {
                     String name = userprofile.getFirstName();
+                    String email = userprofile.getEmail();
                     homeName.setText(name);
                 }
             }
@@ -167,9 +190,7 @@ public class homeFragment extends Fragment {
                 startActivityForResult(enableBtIntent, 1);
             }
         }
-        //Find = getView().findViewById(R.id.Find);
-        connect = getView().findViewById(R.id.connect);
-        tighten = getView().findViewById(R.id.tighten);
+
         connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,6 +247,15 @@ public class homeFragment extends Fragment {
             Toast.makeText(getActivity(),"Connected",Toast.LENGTH_SHORT).show();
             connect.setCardBackgroundColor(0xffe1f7dd);
             connect.setStrokeColor(0xffA1A1A1);
+
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            // store the switch state
+            editor.putBoolean(Constants.IS_BT_CONNECTED, true);
+
+            // apply changes
+            editor.apply();
         }
     }
 
@@ -311,7 +341,7 @@ public class homeFragment extends Fragment {
                 for(int i = begin; i < bytes; i++) {
                     write(buffer);
                     if(buffer[i] == 100) {
-                        //mmInStream.close();
+                        mmInStream.close();
                         break;
                     }
                 }
@@ -330,6 +360,5 @@ public class homeFragment extends Fragment {
             } catch (IOException e) { }
         }
     }
-
 
 }
