@@ -47,6 +47,7 @@ public class runRecorderFragment extends Fragment {
     ArrayAdapter<String> adapter;
     TextView UID;
     Button addButton;
+    Double mileage;
 
     // firebase
     private FirebaseUser user;
@@ -75,6 +76,8 @@ public class runRecorderFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance("https://lace-aid-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
         userID = user.getUid();
 
+        mileage = 0.0;
+
         addButton = getView().findViewById(R.id.addButton);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +88,7 @@ public class runRecorderFragment extends Fragment {
         });
 
         UID = getView().findViewById(R.id.tv_UID);
-        UID.setText(userID);
+//        UID.setText(userID);
         runList = getView().findViewById(R.id.runList);
         adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
         runList.setAdapter(adapter);
@@ -124,7 +127,7 @@ public class runRecorderFragment extends Fragment {
 
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), result, Toast.LENGTH_SHORT).show();
             // parsing JSON data here
             try {
                 JSONObject jsonResult = new JSONObject(result);
@@ -135,15 +138,21 @@ public class runRecorderFragment extends Fragment {
                     for (int i = 0; i < records.length(); i++) {
                         JSONObject record = records.getJSONObject(i);
                         // Querying from db
-                        int id = record.getInt("id");
+                        int id = record.getInt("ID");
                         String username = record.getString("username");
                         String timeElapsed = record.getString("timeElapsed");
                         Double totalDistance = record.getDouble("totalDistance");
 
-                        if (username == userID){
-                            String line = id + "-" + username + "-" + timeElapsed + "-" + totalDistance;
-                            adapter.add(line);
-                        }
+//                        if (username == userID){
+//                            String line = id + "-" + username + "-" + timeElapsed + "-" + totalDistance;
+//                            mileage += totalDistance;
+//                            UID.setText("Mileage: "+ mileage + "km");
+//                            adapter.add(line);
+//                        }
+                        String line = id + " - Distance: " + totalDistance + "km - Duration: " + timeElapsed;
+                        mileage += totalDistance;
+                        UID.setText("Mileage: "+ mileage + "km");
+                        adapter.add(line);
 
 
                     }

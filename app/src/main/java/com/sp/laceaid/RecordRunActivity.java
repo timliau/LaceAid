@@ -11,6 +11,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -173,7 +174,7 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         try {
-                            saveRun();
+                            onSave();
                             runStarted = false;
                             startButton.setText("Start New Run");
                             routePoints.clear();
@@ -348,14 +349,27 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
         map = googleMap;
     }
 
-    private void saveRun(){
-        helper.insertInfo(
-                "" + user,
-                "" + totalTime,
-                "" + totalDistance
-        );
+//    private void saveRun(){
+//        helper.insertInfo(
+//                "" + user,
+//                "" + totalTime,
+//                totalDistance
+//        );
+//    }
+
+    public void onSave(){
+        BackgroundWorker backgroundWorker = new BackgroundWorker(this);
+        backgroundWorker.execute("insert", ""+user, ""+totalTime, ""+totalDistance);
     }
 
 
-
 }
+
+
+
+
+
+
+
+
+
