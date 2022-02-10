@@ -45,7 +45,7 @@ import java.net.URI;
 public class runRecorderFragment extends Fragment {
     ListView runList;
     ArrayAdapter<String> adapter;
-    TextView UID;
+    TextView UID, noRunText;
     Button addButton;
     Double mileage;
 
@@ -86,11 +86,11 @@ public class runRecorderFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
+        noRunText = getView().findViewById(R.id.noRunText);
         UID = getView().findViewById(R.id.tv_UID);
 //        UID.setText(userID);
         runList = getView().findViewById(R.id.runList);
-        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
+        adapter = new ArrayAdapter<String>(getContext(), R.layout.record_row, R.id.recordText);
         runList.setAdapter(adapter);
         new Connection().execute();
     }
@@ -142,6 +142,7 @@ public class runRecorderFragment extends Fragment {
                         String username = record.getString("username");
                         String timeElapsed = record.getString("timeElapsed");
                         Double totalDistance = record.getDouble("totalDistance");
+                        double roundedTotalDistance = Math.round(totalDistance*100.0)/100.0;
 
 //                        if (username == userID){
 //                            String line = id + "-" + username + "-" + timeElapsed + "-" + totalDistance;
@@ -149,15 +150,16 @@ public class runRecorderFragment extends Fragment {
 //                            UID.setText("Mileage: "+ mileage + "km");
 //                            adapter.add(line);
 //                        }
-                        String line = id + " - Distance: " + totalDistance + "km - Duration: " + timeElapsed;
+                        String line = "Distance: " + roundedTotalDistance + "km - Duration: " + timeElapsed;
                         mileage += totalDistance;
-                        UID.setText("Mileage: "+ mileage + "km");
+                        double roundedMileage = Math.round(mileage*100.0)/100.0;
+                        UID.setText("Your Mileage: "+ roundedMileage + "km");
                         adapter.add(line);
 
 
                     }
                 } else {
-                    Toast.makeText(getContext(), "There are no records in database", Toast.LENGTH_SHORT).show();
+                    noRunText.setVisibility(View.VISIBLE);
                 }
             } catch (JSONException e) {
 //                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();

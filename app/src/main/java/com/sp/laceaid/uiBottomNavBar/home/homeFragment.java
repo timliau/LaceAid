@@ -146,7 +146,6 @@ public class homeFragment extends Fragment {
 
                 if(userprofile != null) {
                     String name = userprofile.getFirstName();
-                    String email = userprofile.getEmail();
                     homeName.setText(name);
                 }
             }
