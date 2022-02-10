@@ -359,7 +359,7 @@ public class RecordRunActivity extends FragmentActivity implements OnMapReadyCal
 
     public void onSave(){
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute("insert", ""+user, ""+displayTime, ""+totalDistance);
+        backgroundWorker.execute("insert", ""+userID, ""+displayTime, ""+totalDistance);
     }
 
 

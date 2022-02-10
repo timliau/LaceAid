@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginRight="1mm"
     android:orientation="horizontal">
 
     <ImageView
@@ -15,5 +16,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textColor="@color/black" />
+        android:fontFamily="@font/segoe_ui"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 </LinearLayout>

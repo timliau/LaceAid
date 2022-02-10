@@ -48,6 +48,7 @@ public class runRecorderFragment extends Fragment {
     TextView UID, noRunText;
     Button addButton;
     Double mileage;
+    Boolean listEmpty = true;
 
     // firebase
     private FirebaseUser user;
@@ -144,20 +145,16 @@ public class runRecorderFragment extends Fragment {
                         Double totalDistance = record.getDouble("totalDistance");
                         double roundedTotalDistance = Math.round(totalDistance*100.0)/100.0;
 
-//                        if (username == userID){
-//                            String line = id + "-" + username + "-" + timeElapsed + "-" + totalDistance;
-//                            mileage += totalDistance;
-//                            UID.setText("Mileage: "+ mileage + "km");
-//                            adapter.add(line);
-//                        }
-                        String line = "Distance: " + roundedTotalDistance + "km - Duration: " + timeElapsed;
-                        mileage += totalDistance;
-                        double roundedMileage = Math.round(mileage*100.0)/100.0;
-                        UID.setText("Your Mileage: "+ roundedMileage + "km");
-                        adapter.add(line);
-
-
+                        if (username == userID){
+                            String line = "Distance: " + roundedTotalDistance + "km - Duration: " + timeElapsed;
+                            mileage += totalDistance;
+                            double roundedMileage = Math.round(mileage*100.0)/100.0;
+                            UID.setText("Overall Mileage: "+ roundedMileage + "km");
+                            adapter.add(line);
+                            listEmpty = false;
+                        }
                     }
+                    if (listEmpty = true) noRunText.setVisibility(View.VISIBLE);
                 } else {
                     noRunText.setVisibility(View.VISIBLE);
                 }
