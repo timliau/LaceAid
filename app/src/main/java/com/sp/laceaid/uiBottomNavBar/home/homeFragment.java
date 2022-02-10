@@ -208,8 +208,13 @@ public class homeFragment extends Fragment {
                     ConnectedThread mConnectedThread = new ConnectedThread(mSocket);
                     mConnectedThread.start();
                     mConnectedThread.write(("t").getBytes());
-                    mConnectedThread.run();
                     Toast.makeText(getActivity(), "Tightened", Toast.LENGTH_SHORT).show();
+                    connect.setCardBackgroundColor(0xffe1f7dd);
+                    connect.setStrokeColor(0xffA1A1A1);
+                    Find.setColorFilter(ContextCompat.getColor(getContext(), R.color.primary), android.graphics.PorterDuff.Mode.SRC_IN);
+                    tighten.setCardBackgroundColor(0xffa8e79b);
+                    tighten2.setCardBackgroundColor(0xff6BD755);
+                    shoeicon.setColorFilter(ContextCompat.getColor(getContext(), R.color.dark_grey), android.graphics.PorterDuff.Mode.SRC_IN);
                 }
             }
         });
@@ -234,7 +239,16 @@ public class homeFragment extends Fragment {
         catch (Exception we) {
             Toast.makeText(getActivity(),"Error: " + we ,Toast.LENGTH_SHORT).show();
         }
-        if (name.isEmpty()) {Toast.makeText(getActivity(),"Connection failed",Toast.LENGTH_SHORT).show();}
+        if (name.isEmpty()) {
+            Toast.makeText(getActivity(),"Connection failed",Toast.LENGTH_SHORT).show();
+            SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            // store the switch state
+            editor.putBoolean(Constants.IS_BT_CONNECTED, false);
+
+            // apply changes
+            editor.apply();
+        }
         else {
             myBluetooth = BluetoothAdapter.getDefaultAdapter();
 //            BluetoothDevice dispositivo = myBluetooth.getRemoteDevice(address);
@@ -269,21 +283,6 @@ public class homeFragment extends Fragment {
 //            Toast.makeText(getActivity(),e.getMessage(), Toast.LENGTH_SHORT).show();
 //        }
 //    }
-
-    Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            byte[] writeBuf = (byte[]) msg.obj;
-            int begin = (int)msg.arg1;
-            int end = (int)msg.arg2;
-            switch(msg.what) {
-                case 1:
-                    String writeMessage = new String(writeBuf);
-                    writeMessage = writeMessage.substring(begin, end);
-                    break;
-            }
-        }
-    };
 
     private class ConnectThread extends Thread {
         private final BluetoothDevice mmDevice;
@@ -331,27 +330,11 @@ public class homeFragment extends Fragment {
             mmOutStream = tmpOut;
         }
 
-        public void run() {
-            byte[] buffer = new byte[1024];
-            int begin = 0;
-            int bytes = 0;
-
-            try {
-                bytes += mmInStream.read(buffer, bytes, buffer.length - bytes);
-                for(int i = begin; i < bytes; i++) {
-                    write(buffer);
-                    if(buffer[i] == 100) {
-                        mmInStream.close();
-                        break;
-                    }
-                }
-            } catch (IOException e) {
-            }
-
-        }
         public void write(byte[] bytes) {
             try {
                 mmOutStream.write(bytes);
+                int x = mmInStream.read();
+                while (x != 100){};
             } catch (IOException e) { }
         }
         public void cancel() {
