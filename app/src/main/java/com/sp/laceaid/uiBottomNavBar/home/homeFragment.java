@@ -28,7 +28,14 @@ import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.sp.laceaid.R;
+import com.sp.laceaid.User;
 import com.sp.laceaid.login.screen.LoginOptionsActivity;
 
 import java.io.IOException;
@@ -45,6 +52,11 @@ import java.util.UUID;
  */
 public class homeFragment extends Fragment {
 
+    // firebase
+    private FirebaseUser user;
+    private DatabaseReference databaseReference;
+    private String userID;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,6 +70,7 @@ public class homeFragment extends Fragment {
 
     private MaterialCardView connect;
     private CardView tighten;
+    private TextView homeName;
 
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
@@ -117,6 +130,34 @@ public class homeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         super.onCreate(savedInstanceState);
+
+        // grab data from firebase realtime db
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        // need to add the url as the default location is USA not SEA
+        databaseReference = FirebaseDatabase.getInstance("https://lace-aid-default-rtdb.asia-southeast1.firebasedatabase.app").getReference("Users");
+        userID = user.getUid();
+        homeName = getView().findViewById(R.id.homeName);
+
+        // update name and email in nav drawer when user load (first time + only once)
+        databaseReference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userprofile = snapshot.getValue(User.class);
+
+                if(userprofile != null) {
+                    String name = userprofile.getFirstName();
+                    String email = userprofile.getEmail();
+                    homeName.setText(name);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getActivity(), "Cannot update profile", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
         myBluetooth = BluetoothAdapter.getDefaultAdapter();
         if (myBluetooth == null) {
             Toast.makeText(getActivity(), "Your device does not support bluetooth", Toast.LENGTH_SHORT).show();
@@ -151,6 +192,7 @@ public class homeFragment extends Fragment {
             }
         });
     }
+
 
     private void bluetooth_connect_device() throws IOException {
         try {
