@@ -6,24 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".RunList">
 
-    <TextView
-        android:id="@+id/tv_UID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Runs"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/runList"
-        android:layout_width="409dp"
-        android:layout_height="638dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_UID" />
+        <TextView
+            android:id="@+id/tv_UID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="2mm"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:text="Your Runs"
+            android:textSize="24sp" />
+
+        <ListView
+            android:id="@+id/runList"
+            android:layout_width="409dp"
+            android:layout_height="638dp"
+            android:layout_marginTop="1dp" />
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -31,18 +34,20 @@
         android:paddingBottom="10mm"
         tools:layout_editor_absoluteY="537dp">
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <android.widget.Button
             android:id="@+id/addButton"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:layout_marginRight="28px"
-            android:layout_marginBottom="38px"
-            android:clickable="true"
-            android:scaleType="center"
-            app:fabCustomSize="75dp"
-            app:srcCompat="@drawable/ic_add"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:layout_marginRight="2mm"
+            android:layout_marginBottom="2mm"
+            android:background="@drawable/button_full_rounded"
+            android:fontFamily="@font/segoe_ui_bold"
+            android:text="Start Workout!"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:cornerRadius="50dp" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

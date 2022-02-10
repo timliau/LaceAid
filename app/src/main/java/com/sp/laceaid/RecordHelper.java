@@ -24,7 +24,7 @@ public class RecordHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public long insertInfo(String username, String timeElapsed, String totalDist) {
+    public long insertInfo(String username, String timeElapsed, Double totalDist) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -37,7 +37,7 @@ public class RecordHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public void updateInfo(String id, String username, String timeElapsed, String totalDist) {
+    public void updateInfo(String id, String username, String timeElapsed, Double totalDist) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
