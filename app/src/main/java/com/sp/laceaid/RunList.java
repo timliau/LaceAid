@@ -41,7 +41,8 @@ public class RunList extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             String result = "";
-            String host = "http://222.164.5.103/laceaid/runRecords.php";
+            String host = "http://222.164.5.103/laceaidwebsite/laceaid/runRecords.php";
+
             try {
                 HttpClient client = new DefaultHttpClient();
                 HttpGet request = new HttpGet();

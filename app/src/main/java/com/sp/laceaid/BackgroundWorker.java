@@ -25,7 +25,7 @@ public class BackgroundWorker extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         String type = params[0];
-        String insert_url = "http://222.164.5.103/laceaid/insert.php";
+        String insert_url = "http://222.164.5.103/laceaidwebsite/laceaid/insert.php";
         if(type.equals("insert")) {
             try{
                 String username = params[1];
