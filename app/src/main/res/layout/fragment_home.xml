@@ -73,7 +73,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/imageView5"
+                    android:id="@+id/eyeicon"
                     android:layout_width="16dp"
                     android:layout_height="18dp"
                     android:layout_gravity="bottom"
@@ -112,7 +112,8 @@
             android:layout_gravity="center"
             android:clickable="true"
             app:cardBackgroundColor="#FFA1A1A1"
-            app:cardCornerRadius="90dp">
+            app:cardCornerRadius="90dp"
+            tools:ignore="SpeakableTextPresentCheck">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/tighten2"

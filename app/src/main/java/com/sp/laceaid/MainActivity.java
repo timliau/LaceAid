@@ -189,10 +189,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 break;
 
-            case R.id.nav_setting:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView2, new SettingFragment()).commit();
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                break;
+//            case R.id.nav_setting:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView2, new SettingFragment()).commit();
+//                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+//                break;
 
             case R.id.nav_manual:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView2, new ManualFragment()).commit();

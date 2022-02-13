@@ -23,7 +23,7 @@
             android:textSize="45sp" />
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/eyeicon"
             android:layout_width="380dp"
             android:layout_height="250dp"
             android:layout_centerHorizontal="true"
@@ -45,7 +45,7 @@
             android:id="@+id/button_login_option"
             android:layout_width="220dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imageView5"
+            android:layout_below="@id/eyeicon"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginTop="65dp"

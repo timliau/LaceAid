@@ -38,9 +38,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sp.laceaid.Constants;
+import com.sp.laceaid.ManualActivity;
 import com.sp.laceaid.R;
 import com.sp.laceaid.User;
 import com.sp.laceaid.login.screen.LoginOptionsActivity;
+import com.sp.laceaid.uiNavDrawer.AboutFragment;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -75,7 +77,7 @@ public class homeFragment extends Fragment {
     private MaterialCardView connect;
     private CardView tighten, tighten2;
     private TextView homeName;
-    private ImageView Find, shoeicon;
+    private ImageView Find, shoeicon, eyeicon;
 
     BluetoothAdapter myBluetooth = null;
     BluetoothSocket btSocket = null;
@@ -148,6 +150,7 @@ public class homeFragment extends Fragment {
         connect = getView().findViewById(R.id.connect);
         tighten = getView().findViewById(R.id.tighten);
         tighten2 = getView().findViewById(R.id.tighten2);
+        eyeicon = getView().findViewById(R.id.eyeicon);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE);
 
@@ -201,6 +204,11 @@ public class homeFragment extends Fragment {
                 }
             }
         });
+
+        eyeicon.setOnClickListener(v->{
+            startActivity(new Intent(getActivity(), ManualActivity.class));
+        });
+
         tighten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

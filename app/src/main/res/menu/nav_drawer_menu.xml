@@ -6,10 +6,6 @@
             android:title="Profile"
             android:icon="@drawable/navdrawer_person" />
         <item
-            android:id="@+id/nav_setting"
-            android:title="Setting"
-            android:icon="@drawable/navdrawer_setting" />
-        <item
             android:id="@+id/nav_manual"
             android:icon="@drawable/navdrawer_manual"
             android:title="Manual" />
